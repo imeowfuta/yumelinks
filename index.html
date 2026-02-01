@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en"
+style='
+--cols: 16;
+--rows: 16;
+--x: 1;
+--y: 1;
+--backgroundscrollspeedx: 0.5;
+--backgroundscrollspeedy: 0.1;
+--backgroundsize: 2%;
+--customhtml: "0,0 6,2 https://en.wikipedia.org/wiki/Torrent_duck";
+--gridstate: "3,0 1,0 2,0 2,0 2,0 2,0 2,0 2,0 0,0 0,0 1,0 0,0 1,0 0,0 0,0 0,0 1,0 0,0 0,0 0,0 1,0 0,0 0,0 0,0 0,0 4,0 4,0 0,0 1,0 0,0 1,0 0,0 0,0 0,0 0,0 3,0 1,0";
+--tilesetsprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEABAMAAACuXLVVAAAAD1BMVEUAAACZmZlmZplmZmYzZpko+ityAAAAAXRSTlMAQObYZgAAAQ9JREFUeNrt1MGRwjAQRFFSaA8JuFECg0hgxeQf0xa2Wba4Iy7/HXzw6ZeqpZPe+KCHRTp9mjapJ1fZbmPxInlSQCgVqa6QquxWw1q8ao0pAamU1CO7Mm23Klt99WJPCMjQJiJSSrtq2Fasi7Wsnw+IV8DbCK8XTRvhi92qypbieslvBNQ+Q+nc+883Ah5aDalX9SkBud/DQ/NOuvd+mxDQQ1JsH0VKNZ4Bt6r7hIAI7TKkrm67arR5J6Cn/STS+wotnavmjDD0J0I+aBM55yn+pw17uNX+N75yDcutSocTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAh/0C3aM3uPegxg0AAAAASUVORK5CYII="); 
+--playersprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgAAAACs5Sa2AAAAAnRSTlMAAQGU/a4AAAK7SURBVHja7ZfBattAFEXfoMxOwdlo1/6DismuoRNM6CaQCY7QxuBf6KJLQ39thNEuELrwf6iE7FpU9N4LlxlbGIEhEJLN1Z1ziJ2Rxnmm6sgPnUTwFr1Ch5BTBLRDeCip4Ou5AO0QlkSWQRCgHYKXBWQqOCIDgJ4IyJML6WujYx+ICgB07CRRBcBZjf4GzSIRFDjD6VwkDCBjcO3MNWcQEULIBGjakMXCIlCrwA/5nViM7uZOAP0esiZqI2GtQo18iYQV0eVwuVagHcKGFwD2hB+8Dyxe6UadH9zJn0SfseWR4AsFkjYVjLP8sBrXDumNG7kXyGnCYOA9oB45vG8lLO2RD5BHtVeHP0BwD/Ye+5AcHO4Tjt6U0503I0LeCkAmwnwnoOfkDgHAZz1ECAAPs07FWAD41lcqJoICP/sngnYICtxFwakdglfg+CahQ/gk4MwZTu0Q3ELAjaYTEcK9gmpBHNohVLekAjIWNrqQkb7bkAglAwjUcUIgBY50rYwEAC/BPRKsU8C3AB2n27UiWA7ukZA7i8cdHUL0f0L6yF/B69ynHN6P+eGE88O8NADoEJ7mBmDoX2Nh2fctg2cRtUOo+34HgI6d3G4LAHTsZN/zgt9uLSf3+BPmFXC6uy4WfND54e7P65gwMj90Y/ND9hzPD0+hifch63YMZkHmh1nYmx9eFAzi0HfT5oc1LwBsDkwg55gfeJ64fIP5QQCRiO98fvDvYX5YlCPCUkCaEOpHWah7Tu0QAPpgIUIAmPGhlQ4BoOr/QoTAQBZ+dVbFSBiADg5nRsVIGIDVmySCdggrXXDmgtNHAgMjQnPPeduYRGhu5Lrh4A4BAPmFA0Km742Crl2lYxJB4MwTISe9NipQJAxAi4UYCcbLdS1AO4Sl0YfUi6AdgjdlgccdHQLh+I99AanwEtynHN7/JGfMtvZgnCUAAAAASUVORK5CYII=");
+--worldbackgroundsprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQAAAACBiqPTAAAAE0lEQVR42gEIAPf/ABAAIABAAIACWADxzXRhxgAAAABJRU5ErkJggg==");
+--walksound: url("data:audio/mpeg;base64,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");
+'> 
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>yumelinks</title>
+
+</head>
+<body>
+  <div class="grid" id="grid"></div>
+  <div class="player" id="player"></div>
+
+  <div class="menu" id="menu">
+
+    <p>move: arrows/WASD, interact: z/space</p>
+
+    <label for="saveButton">Save:</label>
+    <button id="saveButton" type="button">Save</button>
+    <br>
+    <label for="sourceHtmlInput">Upload original HTML (required to Save):</label>
+    <input id="sourceHtmlInput" type="file" accept=".html,text/html" />
+    <br>
+    <label for="tilesetInput">Upload tileset:</label>
+    <input id="tilesetInput" type="file" accept="image/*" />
+    <br>
+    <label for="backgroundInput">Upload background image:</label>
+    <input id="backgroundInput" type="file" accept="image/*" />
+    <br>
+
+    <label for="backgroundSpeedX">Background scroll speed X</label>
+    <label for="backgroundSpeedY" style="margin-left:8px;">and Y</label>
+    <br>
+    <input id="backgroundSpeedX" type="number" step="0.1" value="0" style="width:80px" />
+    <input id="backgroundSpeedY" type="number" step="0.1" value="0" style="width:80px" />
+    <br>
+    <label for="backgroundSize">Background image size:</label>
+    <input id="backgroundSize" type="number" step="10" value="100" style="width:80px" />
+    <br>
+    <label for="playerInput">Upload player sprite:</label>
+    <input id="playerInput" type="file" accept="image/*" />
+
+    <br>
+    <label for="walksoundInput">Upload walk sound:</label>
+    <input id="walksoundInput" type="file" accept="audio/*" onchange="if(this.files && this.files[0] && this.files[0].size > 10240){ alert('Walk sound must be 10 KiB or smaller.'); this.value = ''; }" />
+
+    <br>
+    <label>Tileset palette (click a tile to select)</label>
+    <div id="palette" class="palette" aria-label="tileset-palette"></div>
+
+    <div class="palette-row">
+      <div>
+        Selected:
+        <span id="selectedCoords">none</span>
+      </div>
+      <div id="preview" class="tile-preview" title="selected tile preview"></div>
+    </div>
+
+
+    <label for="customHTML">enter string of coords followed by link or custom html. eg. 2,4 3,4 https://example.com</label>
+    <textarea id="customHTML" rows="4" style="width:100%;font-family:monospace;font-size:12px;margin-top:6px;">2,4 https://example.com</textarea>
+
+    <label for="debugBox" style="margin-top:12px;display:block;">Debug Output:</label>
+    <textarea id="debugBox" readonly rows="6" style="width:100%;font-family:monospace;font-size:12px;margin-top:6px;">debug output</textarea>
+
+  </div>
+  <button id="toggleMenu" type="button" style="position:absolute;right:10px;left: auto;">Menu</button>
+
+
+<script> // // // // // // // // // // SCRIPT // // // // // // // // // //
+  const rootStyle = getComputedStyle(document.documentElement);
+
+  let COLS = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cols')) || 16;
+  let ROWS = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--rows')) || 16;
+  let x = parseFloat(rootStyle.getPropertyValue('--x')) || 2;
+  let y = parseFloat(rootStyle.getPropertyValue('--y')) || 2;
+  let backgroundScrollSpeedX = parseFloat(rootStyle.getPropertyValue('--backgroundscrollspeedx')) || 0;
+  let backgroundScrollSpeedY = parseFloat(rootStyle.getPropertyValue('--backgroundscrollspeedy')) || 0;
+  let customhtml = (rootStyle.getPropertyValue('--customhtml') || '').trim();
+
+  let walkSound = null;
+  const v = getComputedStyle(document.documentElement).getPropertyValue('--walksound') || '';
+  const m = v.match(/url\((['"]?)(.*?)\1\)/);
+  if (m && m[2]) {
+    try { walkSound = new Audio(m[2]); walkSound.preload = 'auto'; } catch (e) { walkSound = null; }
+  }
+
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const PALETTE_COLS = 16;
+  const PALETTE_ROWS = 16;
+  const palette = document.getElementById('palette');
+  const preview = document.getElementById('preview');
+  const selectedCoords = document.getElementById('selectedCoords');
+  const grid = document.getElementById('grid');
+  const player = document.getElementById('player');
+
+  let visx = x;
+  let visy = y;
+  let moving = false; // NEW: block new moves until arrival
+  let facing = 2; // 0=up,1=right,2=down,3=left
+  let tilefacingx = 0;
+  let tilefacingy = 0;
+  let selected = null; // {c, r}
+
+  
+  document.body.style.setProperty('--visx', visx);
+  document.body.style.setProperty('--visy', visy);
+  document.body.style.setProperty('--playerspriteframex', '0%');
+  document.body.style.setProperty('--playerspriteframey', '0%');
+
+
+
+// BUILD GRID
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const d = document.createElement('div');
+      d.className = 'cell';
+      d.style.setProperty('--col', c);
+      d.style.setProperty('--row', r);
+      d.dataset.col = c;
+      d.dataset.row = r;
+      grid.appendChild(d);
+    }
+  }
+
+  const rawGridState = (getComputedStyle(document.documentElement).getPropertyValue('--gridstate') || '').trim();
+  let gridstate = String(rawGridState).replace(/^['"]|['"]$/g,'').trim(); // strip surrounding quotes if any
+
+  if (gridstate && /^[\d\s,]+$/.test(gridstate)) { // only allow digits, commas and whitespace (including newlines)
+    // parse any digits into an array of number pairs: [[a,b],[c,d],...]
+    const nums = (gridstate.match(/\d+/g) || []).map(n => parseInt(n, 10)).filter(n => Number.isFinite(n));
+    const parsed = [];
+    for (let i = 0; i < nums.length; i += 2) {
+      if (i + 1 < nums.length) parsed.push([nums[i], nums[i + 1]]);
+    }
+    if (parsed.length) {
+      for (let r = 0; r < parsed.length; r++) { // fill remaining rows with empty tiles if needed
+        const idx = r;
+        const cell = grid.querySelector(`.cell[data-col="${idx % COLS}"][data-row="${Math.floor(idx / COLS)}"]`);
+        const [tc = 0, tr = 0] = parsed[idx] || [];
+        if (cell) cell.style.backgroundPosition = `${(100/15*tc)}% ${(100/15*tr)}%`;
+      }
+    }
+  }
+
+
+// AUDIO PLAYBACK
+
+  function playWalkSound() {
+    const a = walkSound;
+    if (!a) return;
+    try { a.currentTime = 0; } catch (e) { /* ignore read-only currentTime */ }
+    const p = a.play && a.play();
+    if (p && p.catch) p.catch(() => { /* ignore play promise errors (autoplay etc.) */ });
+  }
+
+// MOVEMENT HANDLING
+
+  const KEY_MAP = {
+    'arrowup': 'up', 'w': 'up', 'f': 'up',
+    'arrowdown': 'down', 's': 'down',
+    'arrowleft': 'left', 'a': 'left', 'r': 'left',
+    'arrowright': 'right', 'd': 'right', 't': 'right'
+  };
+
+  const DIR_MAP = {
+    up:    { dx: 0, dy: -1, dir: 0 },
+    down:  { dx: 0, dy:  1, dir: 2 },
+    left:  { dx: -1, dy: 0, dir: 1 },
+    right: { dx:  1, dy: 0, dir: 3 }
+  };
+
+  const keysHeld = new Set();
+
+  function inputHasFocus() {
+    const el = document.activeElement;
+    if (!el) return false;
+    const tag = el.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable) return true;
+    return false;
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (inputHasFocus()) return; // block player input while typing
+    const k = String(e.key || '').toLowerCase();
+    const dir = KEY_MAP[k];
+    if (dir) keysHeld.add(dir);
+  });
+  window.addEventListener('keyup', (e) => {
+    if (inputHasFocus()) return; // block player input while typing
+    const k = String(e.key || '').toLowerCase();
+    const dir = KEY_MAP[k];
+    if (dir) keysHeld.delete(dir);
+  });
+
+  // movement priority using generic directions
+  const PRIORITY = ['up', 'down', 'left', 'right'];
+
+  setInterval(() => { // 60 FPS game loop START
+    if (!moving){ // wait until arrival
+      for (const d of PRIORITY) {
+        if (!keysHeld.has(d)) continue;
+        const mv = DIR_MAP[d];
+        if (!mv) continue;
+        const newX = clamp(x + mv.dx, 0, COLS - 1);
+        const newY = clamp(y + mv.dy, 0, ROWS - 1);
+        if (newX === x && newY === y) break;
+        moving = true;
+        x = newX; y = newY;
+        facing = mv.dir;
+        document.documentElement.style.setProperty('--x', x);
+        document.documentElement.style.setProperty('--y', y);
+      
+      try { playWalkSound(); } catch (e) { /* ignore */ } // play a step sound when a move begins
+        break;
+      }
+    }
+
+    const dx = x - visx;
+    const dy = y - visy;
+    if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) { // if visually close, snap and stop
+      visx = x;
+      visy = y;
+      moving = false;
+    } else { // else move closer
+      visx += Math.sign(dx) * 0.05;
+      visy += Math.sign(dy) * 0.05;
+    }
+
+    document.body.style.setProperty('--visx', visx);
+    document.body.style.setProperty('--visy', visy);
+
+
+    // facing direction framey
+    let frameY = facing * 100;
+    document.body.style.setProperty('--playerspriteframey', `${frameY}%`);
+
+    // walking animation framex
+    const walkcycle = [1,0,1,2];
+    let animframe = 0;
+    if (facing === 1 || facing === 3) { // right or left
+      animframe = Math.floor(visx * 2) % walkcycle.length;
+    } else {
+      animframe = Math.floor(visy * 2) % walkcycle.length;
+    }
+    let frameX = walkcycle[animframe] * -100;
+    document.body.style.setProperty('--playerspriteframex', `${frameX}%`);
+
+    // calculate facing tile coords
+    tilefacingx = (facing === 3 ? 1 : 0) - (facing === 1 ? 1 : 0); // flipped X facing
+    tilefacingy = (facing === 2 ? 1 : 0) - (facing === 0 ? 1 : 0);
+
+    tilefacingx = clamp(x + tilefacingx, 0, COLS - 1);// compute target tile coords and clamp to grid bounds (make globals so handleInteract can read them)
+    tilefacingy = clamp(y + tilefacingy, 0, ROWS - 1);
+
+    //background scrolling
+    const bgPosX = parseFloat(getComputedStyle(grid).backgroundPositionX) || 0;
+    const bgPosY = parseFloat(getComputedStyle(grid).backgroundPositionY) || 0;
+    const newBgPosX = bgPosX + backgroundScrollSpeedX;
+    const newBgPosY = bgPosY + backgroundScrollSpeedY;
+    grid.style.backgroundPosition = `${newBgPosX}px ${newBgPosY}px`;
+
+    // DEBUG OUTPUT
+    debugBox.value =
+      `Position: x=${x}, y=${y}\n` +
+      `Visual:   visx=${visx.toFixed(2)}, visy=${visy.toFixed(2)}\n` +
+      `Moving:   ${moving}\n` +
+      `Facing:   ${facing}\n` +
+      `Tile Facing: ${tilefacingx},${tilefacingy}\n` +
+      `Keys:     [${Array.from(keysHeld).join(', ')}]\n` +
+      `Animframe: ${animframe.toFixed(2)}\n` +
+      `Selected Tile: ${selected ? `${selected.c},${selected.r}` : 'none'}`;
+
+  }, 16); // 60 FPS game loop END
+
+//INTERACTION HANDLER
+
+  window.addEventListener('keydown', (e) => { // single-press listener (ignore repeats and when an input has focus)
+    if (inputHasFocus()) return;
+    if (e.repeat) return;
+    const key = String(e.key || '');
+    if (e.code === 'Space' || key.toLowerCase() === 'z' || key === 'Enter') {// interact keypress handling (single-press: Space, Z, Enter)
+      e.preventDefault();
+      handleInteract();
+    }
+  });
+
+  function handleInteract() {  
+
+    // read editor lines and look for a matching coord, then follow the first URL found on that line
+    const lines = customhtml.split(/\r?\n/);
+
+    const coordToken = `${tilefacingx},${tilefacingy}`;
+    const urlRegex = /\bhttps?:\/\/[^\s]+/i;
+
+    for (let raw of lines) {
+      const line = raw.trim();
+      if (!line) continue;
+
+      // quick presence check: exact token or substring like "2,4" present
+      const tokens = line.split(/\s+/);
+      const matchIndex = tokens.findIndex(t => t === coordToken || t.replace(/[,]/g,'') === coordToken.replace(',',''));
+      if (matchIndex === -1 && line.indexOf(coordToken) === -1) continue;
+
+      // try to find a URL on the same line
+      const u = line.match(urlRegex);
+      if (u && u[0]) {
+        // user-initiated keypress -> safe to open
+        window.open(u[0], '_blank');
+        return;
+      }
+
+      // if URL not found but the token is present, also check token+1 as probable link
+      if (matchIndex >= 0 && tokens.length > matchIndex + 1) {
+        const candidate = tokens[matchIndex + 1];
+        if (candidate && urlRegex.test(candidate)) {
+          window.open(candidate.match(urlRegex)[0], '_blank');
+          return;
+        }
+      }
+
+      // no URL: you could add handling for inline HTML or other actions here
+    }
+  }
+
+
+
+
+// MENU TOGGLE
+  const menu = document.getElementById('menu');
+  const toggleMenuBtn = document.getElementById('toggleMenu');
+  toggleMenuBtn.addEventListener('click', () => {
+    if (menu.style.display === 'none' || getComputedStyle(menu).display === 'none') {
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+      clearSelection(); // clear selection when menu is closed
+    }
+  });
+
+  // ASSET UPLOADS (replace existing handlers with these minimal DataURL handlers)
+  const tilesetInput = document.getElementById('tilesetInput');
+  const backgroundInput = document.getElementById('backgroundInput');
+  const playerInput = document.getElementById('playerInput');
+  const debugBox = document.getElementById('debugBox');
+
+  function fileToDataURL(file, cb) {
+    const fr = new FileReader();
+    fr.onload = () => cb(fr.result);
+    fr.onerror = () => cb(null);
+    fr.readAsDataURL(file);
+  }
+
+  tilesetInput.addEventListener('change', (ev) => {
+    const f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    fileToDataURL(f, (dataUrl) => {
+      if (!dataUrl) return;
+      document.documentElement.style.setProperty('--tilesetsprite', `url("${dataUrl}")`);
+      if (debugBox) debugBox.value = dataUrl;
+    });
+  });
+
+  backgroundInput.addEventListener('change', (ev) => {
+    const f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    fileToDataURL(f, (dataUrl) => {
+      if (!dataUrl) return;
+      document.documentElement.style.setProperty('--worldbackgroundsprite', `url("${dataUrl}")`);
+      if (debugBox) debugBox.value = dataUrl;
+    });
+  });
+
+  playerInput.addEventListener('change', (ev) => {
+    const f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    fileToDataURL(f, (dataUrl) => {
+      if (!dataUrl) return;
+      document.documentElement.style.setProperty('--playersprite', `url("${dataUrl}")`);
+      if (debugBox) debugBox.value = dataUrl;
+    });
+  });
+
+  // walk sound upload: set --walksound to data URL and update walkAudio
+  const walksoundInput = document.getElementById('walksoundInput');
+  if (walksoundInput) {
+    walksoundInput.addEventListener('change', (ev) => {
+      const f = ev.target.files && ev.target.files[0];
+      if (!f) return;
+      fileToDataURL(f, (dataUrl) => {
+        if (!dataUrl) return;
+        // set CSS var so saved HTML picks it up
+        document.documentElement.style.setProperty('--walksound', `url("${dataUrl}")`);
+        // update runtime Audio object
+        try {
+          if (walkAudio) {
+            walkAudio.pause();
+            walkAudio.src = dataUrl;
+            walkAudio.load();
+          } else {
+            walkAudio = new Audio(dataUrl);
+            walkAudio.preload = 'auto';
+          }
+        } catch (e) { /* ignore */ }
+        if (debugBox) debugBox.value = 'Walk sound loaded';
+      });
+    });
+  }
+
+  let backgroundSpeedXInput = document.getElementById('backgroundSpeedX');
+  let backgroundSpeedYInput = document.getElementById('backgroundSpeedY');
+  backgroundSpeedXInput.value = String(backgroundScrollSpeedX || 0);
+  backgroundSpeedYInput.value = String(backgroundScrollSpeedY || 0);
+  backgroundSpeedXInput.addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value) || 0;
+    backgroundScrollSpeedX = v;
+    document.documentElement.style.setProperty('--backgroundscrollspeedx', v);
+  });
+  backgroundSpeedYInput.addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value) || 0;
+    backgroundScrollSpeedY = v;
+    document.documentElement.style.setProperty('--backgroundscrollspeedy', v);
+  });
+
+  let backgroundSizeInput = document.getElementById('backgroundSize');
+  let bgSize = parseFloat(rootStyle.getPropertyValue('--backgroundsize')) || 100;
+  backgroundSizeInput.value = String(bgSize);
+  backgroundSizeInput.addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value) || 100;
+    bgSize = v;
+    document.documentElement.style.setProperty('--backgroundsize', `${v}%`);
+  });
+
+  // CUSTOM HTML EDITOR
+  const customHTML = document.getElementById('customHTML');
+  customHTML.addEventListener('input', (e) => {
+    customhtml = e.target.value;
+    document.documentElement.style.setProperty('--customhtml', customhtml);
+  });
+
+
+// EDITOR
+  for (let r = 0; r < PALETTE_ROWS; r++) { // build palette tiles
+    for (let c = 0; c < PALETTE_COLS; c++) {
+      const t = document.createElement('div');
+      t.className = 'tile';
+      // match the background-position formula in the page
+      t.style.backgroundPosition = `${(100/15*c)}% ${(100/15*r)}%`;
+      t.title = `tile ${c},${r}`;
+      t.addEventListener('click', () => {
+        // toggle selection
+        const prev = palette.querySelector('.tile.selected');
+        if (prev) prev.classList.remove('selected');
+        t.classList.add('selected');
+        selected = { c, r };
+        selectedCoords.textContent = `${c},${r}`;
+        preview.style.backgroundPosition = t.style.backgroundPosition;
+      });
+      palette.appendChild(t);
+    }
+  }
+
+  function clearSelection() { // centralized clear function (used when menu closes)
+    const prev = palette.querySelector('.tile.selected');
+    if (prev) prev.classList.remove('selected');
+    selected = null;
+    selectedCoords.textContent = 'none';
+    preview.style.backgroundPosition = '';
+  }
+
+  // Simplified grid paint handler: paint on pointerdown + pointermove while button held.
+  window.addEventListener('DOMContentLoaded', attachGridHandler);
+  if (document.readyState === 'complete') attachGridHandler();
+
+  function attachGridHandler() {
+    const gridEl = document.getElementById('grid');
+    if (!gridEl) return;
+    let drawing = false;
+
+    const paintFromEvent = (ev) => {
+      // use elementFromPoint so we still find the cell when moving fast
+      const el = document.elementFromPoint(ev.clientX, ev.clientY) || ev.target;
+      const cell = el && el.closest('.cell');
+      if (!cell || !selected) return;
+      cell.style.backgroundPosition = `${(100/15*selected.c)}% ${(100/15*selected.r)}%`;
+      updateGridState();
+    };
+
+    gridEl.addEventListener('pointerdown', (ev) => {
+      if (ev.button && ev.button !== 0) return;
+      drawing = true;
+      paintFromEvent(ev);
+      ev.preventDefault();
+    });
+
+    gridEl.addEventListener('pointermove', (ev) => {
+      if (!drawing) return;
+      paintFromEvent(ev);
+    });
+
+    // stop drawing when button released anywhere
+    window.addEventListener('pointerup', () => drawing = false);
+  }
+
+  function updateGridState() {
+    const parts = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cell = grid.querySelector(`.cell[data-col="${c}"][data-row="${r}"]`);
+        let tc = c, tr = r;
+        if (cell) {
+          const bp = (cell.style && cell.style.backgroundPosition) ? cell.style.backgroundPosition.trim() : '';
+          const m = bp.match(/(-?\d+\.?\d*)%/g);
+          if (m && m.length >= 2) {
+            tc = Math.round(parseFloat(m[0]) * 15 / 100);
+            tr = Math.round(parseFloat(m[1]) * 15 / 100);
+            tc = clamp(tc, 0, 15);
+            tr = clamp(tr, 0, 15);
+          }
+        }
+        parts.push(`${tc},${tr}`);
+      }
+    }
+
+    const state = parts.join(' ');
+    document.documentElement.style.setProperty('--gridstate', `"${state}"`);
+    if (typeof debugBox !== 'undefined' && debugBox) debugBox.value = `--gridstate updated: ${state}`;
+    return state;
+  }
+
+  // SAVE PAGE: update only opening <html ...> style (require original HTML before allowing Save)
+const sourceHtmlInputEl = document.getElementById('sourceHtmlInput');
+const saveButtonEl = document.getElementById('saveButton');
+let ORIGINAL_SOURCE = null;
+if (saveButtonEl) saveButtonEl.disabled = true;
+
+function stripLiveServerInjection(src) {
+  if (!src) return src;
+  // remove common live-server injected comment+script or livereload scripts
+  return src
+    .replace(/<!--\s*Code injected by live-server[\s\S]*?<script[\s\S]*?<\/script>\s*-->/gi, '')
+    .replace(/<script[^>]*?livereload[^>]*?>[\s\S]*?<\/script>/gi, '');
+}
+
+if (sourceHtmlInputEl) {
+  sourceHtmlInputEl.addEventListener('change', (ev) => {
+    const f = ev.target.files && ev.target.files[0];
+    if (!f) {
+      ORIGINAL_SOURCE = null;
+      if (saveButtonEl) saveButtonEl.disabled = true;
+      alert('Original HTML cleared.');
+      return;
+    }
+    const r = new FileReader();
+    r.onload = () => {
+      const txt = String(r.result || '');
+
+      // validate start: must contain doctype and an <html ... lang="ANY" ... style='...'> on top,
+      // ignoring linebreaks/extra whitespace and allowing single or double quotes for attributes.
+      const startsWithDoctype = /^\s*<!doctype\s+html>/i.test(txt);
+      const htmlWithLangAndStyle = /<html[^>]*\blang\s*=\s*['"][^'"]+['"][^>]*\bstyle\s*=\s*['"]/i.test(txt.slice(0, 2000)); // allow any lang value (not forcing "en")
+
+      if (!startsWithDoctype || !htmlWithLangAndStyle) {
+        ORIGINAL_SOURCE = null;
+        if (saveButtonEl) saveButtonEl.disabled = true;
+        alert('Uploaded file does not look like the original HTML. It must start with <!doctype html> and include <html lang=\"...\" style=...> at the top.');
+        return;
+      }
+
+      ORIGINAL_SOURCE = txt;
+      if (saveButtonEl) saveButtonEl.disabled = false;
+      alert('Original HTML file loaded successfully. You can now save your changes.');
+    };
+    r.onerror = () => {
+      ORIGINAL_SOURCE = null;
+      if (saveButtonEl) saveButtonEl.disabled = true;
+      alert('Failed to read uploaded HTML file.');
+    };
+    r.readAsText(f);
+  });
+}
+
+if (saveButtonEl) {
+  saveButtonEl.addEventListener('click', () => {
+    if (!ORIGINAL_SOURCE) {
+      alert('Please upload the original HTML file before saving.');
+      return;
+    }
+
+    // build list of CSS custom properties currently set on the <html> element's inline style
+    const htmlInlineStyle = document.documentElement.getAttribute('style') || '';
+    const varRegex = /(--[a-zA-Z0-9\-_]+)\s*:/g;
+    const varsToCapture = [];
+    let m;
+    while ((m = varRegex.exec(htmlInlineStyle))) {
+      if (!varsToCapture.includes(m[1])) varsToCapture.push(m[1]);
+    }
+    if (varsToCapture.length === 0) {  // if no vars found in inline html style, try to pull defaults from the uploaded original HTML
+      const cleanedSource = stripLiveServerInjection(ORIGINAL_SOURCE || ''); //extract the <html ... style="..."> (or style='...') from the uploaded source
+      const htmlStyleMatch = cleanedSource.match(/<html[^>]*\bstyle\s*=\s*(['"])([\s\S]*?)\1/i);
+      if (htmlStyleMatch && htmlStyleMatch[2]) {
+      const htmlStyleText = htmlStyleMatch[2];
+      const inlineVarRegex = /(--[a-zA-Z0-9\-_]+)\s*:\s*([^;]+);?/g;
+      let mm;
+      while ((mm = inlineVarRegex.exec(htmlStyleText))) {
+        if (!varsToCapture.includes(mm[1])) varsToCapture.push(mm[1]);
+      }
+      }
+      alert('Unable to determine CSS custom properties to save. Ensure the original HTML contains an inline style on the <html> tag with the variables.'); // if still nothing found, abort save and inform the user
+      return;
+    }
+    const cs = getComputedStyle(document.documentElement);
+    const lines = varsToCapture.map(v => `${v}: ${cs.getPropertyValue(v).trim()};`);
+
+    const clean = stripLiveServerInjection(ORIGINAL_SOURCE);
+
+    // preserve whatever lang the uploaded file used (fall back to 'en' if not present)
+    const langMatch = clean.match(/^<html[^>]*\blang\s*=\s*(['"])(.*?)\1/i);
+    const langVal = (langMatch && langMatch[2]) ? langMatch[2] : 'en';
+    const newHtmlOpen = `<html lang="${langVal}" style='\n${lines.join('\n')}\n'>`;
+
+    // replace the first <html ...> tag wherever it appears (after <!doctype> usually)
+    let replaced = clean.replace(/<html[^>]*>/i, newHtmlOpen);
+    // if no <html> tag was found at all, prepend the new opening tag
+    if (replaced === clean) replaced = newHtmlOpen + '\n' + clean;
+    
+    const blob = new Blob([replaced], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'yumelinks_saved.html';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+}
+</script>
+
+<style>
+
+body {
+  --visx: 2;
+  --visy: 2;
+  --playerspriteframex: 0%;
+  --playerspriteframey: 0%;
+}
+
+  *,*::before,*::after { top: 0; left: 0; margin: 0; padding: 0; border: 0; outline: 0; box-shadow: none; text-decoration: none; -webkit-appearance: none; appearance: none; box-sizing: border-box; image-rendering: crisp-edges; image-rendering: pixelated;}
+  body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#000000; }
+
+.grid {
+  position: absolute;
+  top: 0;  left: 0;
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(var(--cols), var(--cell-size));  grid-template-rows: repeat(var(--rows), var(--cell-size));
+  --cell-size: calc(100vmin / 16);
+  width: calc(var(--cols) * var(--cell-size));  height: calc(var(--rows) * var(--cell-size));
+  background-image: var(--worldbackgroundsprite);
+  background-size: var(--backgroundsize), auto;
+}
+
+.cell {
+background-image: var(--tilesetsprite);
+background-repeat: no-repeat;
+background-size: calc(100% * 16) calc(100% * 16);
+background-position: calc(100%/15 * var(--col)) calc(100%/15 * var(--row));
+width: 101%;  height: 101%;
+}
+
+.player {
+position: absolute;
+top: calc((var(--visy) - 1) * var(--cell-size));
+left: calc((var(--visx) - 0.5) * var(--cell-size));
+background-image: var(--playersprite);
+background-size: calc(100% * 4) calc(100% * 4);
+background-position: var(--playerspriteframex) var(--playerspriteframey);
+--cell-size: calc(100vmin / 16);
+width: calc(var(--cell-size)*2);  height: calc(var(--cell-size)*2);
+}
+
+.menu {
+  display:none;
+  position: absolute;
+  right: 10px;
+  left: auto;
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(16, 20px);
+  grid-auto-rows: 20px;
+  gap: 2px;
+  padding: 6px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+  margin-top: 8px;
+  width: max-content;
+}
+.palette .tile {
+  width: 20px;
+  height: 20px;
+  background-image: var(--tilesetsprite);
+  background-size: calc(100% * 16) calc(100% * 16);
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+.palette .tile.selected {
+  border-color: #f00;
+  outline: 2px solid rgba(255,0,0,0.25);
+}
+.tile-preview {
+  display:inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+  background-image: var(--tilesetsprite);
+  background-size: calc(100% * 16) calc(100% * 16);
+  border: 1px solid #999;
+}
+.palette-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px;
+}
+
+</style>
+
+</body>
+</html>
+
+
+
+
