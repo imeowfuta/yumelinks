@@ -8,7 +8,7 @@ style='
 --backgroundscrollspeedx: 0.5;
 --backgroundscrollspeedy: 0.1;
 --backgroundsize: 30%;
---customhtml: "0,0 6,2 https://en.wikipedia.org/wiki/Torrent_duck";
+--links: "0,0 6,2 https://en.wikipedia.org/wiki/Torrent_duck";
 --gridstate: "3,0 1,0 2,0 2,0 2,0 2,0 0,0 0,0 1,0 0,0 1,0 0,0 0,0 0,0 1,0 0,0 0,0 0,0 1,0 0,0 0,0 0,0 0,0 0,0 1,0 0,0 1,0 4,0 4,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 1,0 1,0 3,0 1,0";
 --tilesetsprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEABAMAAACuXLVVAAAAD1BMVEUAAACZmZlmZplmZmYzZpko+ityAAAAAXRSTlMAQObYZgAAAQ9JREFUeNrt1MGRwjAQRFFSaA8JuFECg0hgxeQf0xa2Wba4Iy7/HXzw6ZeqpZPe+KCHRTp9mjapJ1fZbmPxInlSQCgVqa6QquxWw1q8ao0pAamU1CO7Mm23Klt99WJPCMjQJiJSSrtq2Fasi7Wsnw+IV8DbCK8XTRvhi92qypbieslvBNQ+Q+nc+883Ah5aDalX9SkBud/DQ/NOuvd+mxDQQ1JsH0VKNZ4Bt6r7hIAI7TKkrm67arR5J6Cn/STS+wotnavmjDD0J0I+aBM55yn+pw17uNX+N75yDcutSocTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAh/0C3aM3uPegxg0AAAAASUVORK5CYII="); 
 --playersprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgAAAACs5Sa2AAAAAnRSTlMAAQGU/a4AAAK7SURBVHja7ZfBattAFEXfoMxOwdlo1/6DismuoRNM6CaQCY7QxuBf6KJLQ39thNEuELrwf6iE7FpU9N4LlxlbGIEhEJLN1Z1ziJ2Rxnmm6sgPnUTwFr1Ch5BTBLRDeCip4Ou5AO0QlkSWQRCgHYKXBWQqOCIDgJ4IyJML6WujYx+ICgB07CRRBcBZjf4GzSIRFDjD6VwkDCBjcO3MNWcQEULIBGjakMXCIlCrwA/5nViM7uZOAP0esiZqI2GtQo18iYQV0eVwuVagHcKGFwD2hB+8Dyxe6UadH9zJn0SfseWR4AsFkjYVjLP8sBrXDumNG7kXyGnCYOA9oB45vG8lLO2RD5BHtVeHP0BwD/Ye+5AcHO4Tjt6U0503I0LeCkAmwnwnoOfkDgHAZz1ECAAPs07FWAD41lcqJoICP/sngnYICtxFwakdglfg+CahQ/gk4MwZTu0Q3ELAjaYTEcK9gmpBHNohVLekAjIWNrqQkb7bkAglAwjUcUIgBY50rYwEAC/BPRKsU8C3AB2n27UiWA7ukZA7i8cdHUL0f0L6yF/B69ynHN6P+eGE88O8NADoEJ7mBmDoX2Nh2fctg2cRtUOo+34HgI6d3G4LAHTsZN/zgt9uLSf3+BPmFXC6uy4WfND54e7P65gwMj90Y/ND9hzPD0+hifch63YMZkHmh1nYmx9eFAzi0HfT5oc1LwBsDkwg55gfeJ64fIP5QQCRiO98fvDvYX5YlCPCUkCaEOpHWah7Tu0QAPpgIUIAmPGhlQ4BoOr/QoTAQBZ+dVbFSBiADg5nRsVIGIDVmySCdggrXXDmgtNHAgMjQnPPeduYRGhu5Lrh4A4BAPmFA0Km742Crl2lYxJB4MwTISe9NipQJAxAi4UYCcbLdS1AO4Sl0YfUi6AdgjdlgccdHQLh+I99AanwEtynHN7/JGfMtvZgnCUAAAAASUVORK5CYII=");
@@ -23,8 +23,10 @@ style='
 
 </head>
 <body>
-  <div class="grid" id="grid"></div>
-  <div class="player" id="player"></div>
+  <div class="world">
+    <div class="grid" id="grid"></div>
+    <div class="player" id="player"></div>
+  </div>
 
   <div class="menu" id="menu">
 
@@ -58,20 +60,18 @@ style='
       "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Background image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
       if(img.width>1024||img.height>1024){alert('Background image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read background image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
     <br>
-    <label for="backgroundSpeedX">Background scroll speed X</label>
-    <label for="backgroundSpeedY" style="margin-left:8px;">and Y</label>
-    <br>
-    <input id="backgroundSpeedX" type="number" step="0.1" value="0" style="width:80px" />
-    <input id="backgroundSpeedY" type="number" step="0.1" value="0" style="width:80px" />
-    <br>
     <label for="backgroundSize">Background image size:</label>
     <input id="backgroundSize" type="number" step="10" value="100" style="width:80px" />
     <br>
-
-    <label for="colsInput">Columns:</label>
-    <input id="colsInput" type="number" min="4" max="64" step="1" value="16" style="width:80px" />
-    <label for="rowsInput" style="margin-left:8px;">Rows:</label>
-    <input id="rowsInput" type="number" min="4" max="64" step="1" value="16" style="width:80px" />
+    <label for="backgroundSpeedX">Background scroll X</label>
+    <input id="backgroundSpeedX" type="number" step="0.1" value="0" style="width:80px" />
+    <label for="backgroundSpeedY" style="margin-left:8px;">Background scroll Y</label>
+    <input id="backgroundSpeedY" type="number" step="0.1" value="0" style="width:80px" />
+    <br>
+    <label for="colsInput">Columns, max 16:</label>
+    <input id="colsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
+    <label for="rowsInput" style="margin-left:8px;">Rows, max 16:</label>
+    <input id="rowsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
     <br>
     
     <label>Tileset palette (click a tile to select)</label>
@@ -85,15 +85,16 @@ style='
     </div>
     <br>
 
-    <label for="customHTML">enter string of coords followed by link or custom html. eg. 2,4 3,4 https://example.com</label>
-    <textarea id="customHTML" rows="7" style="resize: vertical;">2,4 https://example.com</textarea>
+    <label for="links">enter string of coords followed by link eg. 0,2 1,2 https://example.com</label>
+    <textarea id="links" rows="7" style="resize: vertical;"></textarea>
     <br>
 
     <label for="debugBox" style="margin-top:12px;display:block;">Debug Output:</label>
-    <textarea id="debugBox" rows="7" readonly style="resize: none;">debug output</textarea>
+    <textarea id="debugBox" rows="3" readonly style="resize: none;">debug output</textarea>
     <br>
 
-    <h6>CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</h6>
+    <h6>this program is CC0 public domain, as empire falls may the new dream be to share</h6>
+
 
   </div>
   <button id="toggleMenu" type="button">Menu</button>
@@ -108,7 +109,7 @@ style='
   let y = parseFloat(rootStyle.getPropertyValue('--y')) || 2;
   let backgroundScrollSpeedX = parseFloat(rootStyle.getPropertyValue('--backgroundscrollspeedx')) || 0;
   let backgroundScrollSpeedY = parseFloat(rootStyle.getPropertyValue('--backgroundscrollspeedy')) || 0;
-  let customhtml = (rootStyle.getPropertyValue('--customhtml') || '').trim();
+  let links = (rootStyle.getPropertyValue('--links') || '').trim();
 
   let walkSound = null;
   const v = getComputedStyle(document.documentElement).getPropertyValue('--walksound') || '';
@@ -265,7 +266,7 @@ style='
   // movement priority using generic directions
   const PRIORITY = ['up', 'down', 'left', 'right'];
 
-  setInterval(() => { // 30 FPS game loop START
+  setInterval(() => { // 60 FPS game loop START
     if (!moving){ // wait until arrival
       for (const d of PRIORITY) {
         if (!keysHeld.has(d)) continue;
@@ -287,13 +288,13 @@ style='
 
     const dx = x - visx;
     const dy = y - visy;
-    if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2) { // if visually close, snap and stop
+    if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) { // if visually close, snap and stop
       visx = x;
       visy = y;
       moving = false;
     } else { // else move closer
-      visx += Math.sign(dx) * 0.1;
-      visy += Math.sign(dy) * 0.1;
+      visx += Math.sign(dx) * 0.05;
+      visy += Math.sign(dy) * 0.05;
     }
 
     document.body.style.setProperty('--visx', visx);
@@ -322,54 +323,12 @@ style='
     tilefacingx = clamp(x + tilefacingx, 0, COLS - 1);// compute target tile coords and clamp to grid bounds (make globals so handleInteract can read them)
     tilefacingy = clamp(y + tilefacingy, 0, ROWS - 1);
 
-  //background scrolling
+    //background scrolling
     const bgPosX = parseFloat(getComputedStyle(grid).backgroundPositionX) || 0;
     const bgPosY = parseFloat(getComputedStyle(grid).backgroundPositionY) || 0;
     const newBgPosX = bgPosX + backgroundScrollSpeedX;
     const newBgPosY = bgPosY + backgroundScrollSpeedY;
     grid.style.backgroundPosition = `${newBgPosX}px ${newBgPosY}px`;
-
-  // CAMERA / GRID PANNING + PLAYER OFFSET
-    (function panCamera() {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const rect = grid.getBoundingClientRect();
-      const gridW = rect.width || grid.offsetWidth || 0;
-      const gridH = rect.height || grid.offsetHeight || 0;
-      const cellSize = (COLS > 0) ? (gridW / COLS) : 0;
-
-      // pixel position of player within the grid (relative to grid origin)
-      const playerPx = (visx - 0.5) * cellSize;
-      const playerPy = (visy - 1)   * cellSize;
-
-      const centerX = Math.round(vw / 2);
-      const centerY = Math.round(vh / 2);
-
-      let desiredGridLeft;
-      if (gridW <= vw) {
-        // center grid horizontally if smaller than viewport
-        desiredGridLeft = Math.round((vw - gridW) / 2);
-      } else {
-        // want player's in-grid pixel to be at viewport center -> grid left = center - playerPx
-        desiredGridLeft = Math.round(centerX - playerPx);
-        // clamp so grid never moves off-screen
-        desiredGridLeft = clamp(desiredGridLeft, vw - gridW, 0);
-      }
-
-      let desiredGridTop;
-      if (gridH <= vh) {
-        desiredGridTop = Math.round((vh - gridH) / 2);
-      } else {
-        desiredGridTop = Math.round(centerY - playerPy);
-        desiredGridTop = clamp(desiredGridTop, vh - gridH, 0);
-      }
-
-      // publish grid offsets and player offsets (player offset = same offset so player lines up with cells)
-      document.body.style.setProperty('--gridoffsetx', `${desiredGridLeft}px`);
-      document.body.style.setProperty('--gridoffsety', `${desiredGridTop}px`);
-      document.body.style.setProperty('--playeroffsetx', `${desiredGridLeft}px`);
-      document.body.style.setProperty('--playeroffsety', `${desiredGridTop}px`);
-    })();
 
     // DEBUG OUTPUT
     debugBox.value =
@@ -381,7 +340,7 @@ style='
       //`Moving:   ${moving}\n` +
       //`Facing:   ${facing}\n` +
       //`Animframe: ${animframe.toFixed(2)}\n` +
-  }, 32); // 30 FPS game loop END
+  }, 16); // 60 FPS game loop END
 
 //INTERACTION HANDLER
 
@@ -397,7 +356,7 @@ style='
 
   function handleInteract() {  
 
-    const raw = getComputedStyle(document.documentElement).getPropertyValue('--customhtml') || '';
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--links') || '';
     const clean = String(raw).trim().replace(/^['"]|['"]$/g, '');
     const lines = clean.split(/\r?\n/);
 
@@ -572,13 +531,13 @@ style='
   }
 
   // CUSTOM HTML EDITOR
-  const customHTML = document.getElementById('customHTML');
-  const rawCustomhtml = rootStyle.getPropertyValue('--customhtml') || '';
-  customHTML.value = String(rawCustomhtml).trim().replace(/^['"]|['"]$/g, '');
-  customHTML.addEventListener('input', (e) => {
+  const linkelement = document.getElementById('links');
+  const rawlinks = rootStyle.getPropertyValue('--links') || '';
+  linkelement.value = String(rawlinks).trim().replace(/^['"]|['"]$/g, '');
+  linkelement.addEventListener('input', (e) => {
     let v = e.target.value.trim().replace(/^['"]|['"]$/g, '');
-    customhtml = `"${v}"`;
-    document.documentElement.style.setProperty('--customhtml', customhtml);
+    links = `"${v}"`;
+    document.documentElement.style.setProperty('--links', links);
   });
 
 
@@ -776,28 +735,32 @@ body {
   --visy: 2;
   --playerspriteframex: 0%;
   --playerspriteframey: 0%;
-  --gridoffsetx: 0px;
-  --gridoffsety: 0px;
-  --playeroffsetx: 0px;
-  --playeroffsety: 0px;
 
   --blob_tilesetsprite: null;
   --blob_worldbackgroundsprite: null;
   --blob_playersprite: null;
 
   overflow: hidden; height: 100vh; width: 100vw; overscroll-behavior: none;
+
+  /* choose cell size based on the limiting axis (checks if page is wider or taller) */
+  --viewport-w: 100vw;
+  --viewport-h: 100vh;
+  --cell-size: min(calc(var(--viewport-w) / var(--cols, 16)), calc(var(--viewport-h) / var(--rows, 16)));
 }
 
   *,*::before,*::after { top: 0; left: 0; margin: 0; padding: 0; border: 0; outline: 0; box-shadow: none; text-decoration: none; -webkit-appearance: none; appearance: none; box-sizing: border-box; image-rendering: crisp-edges; image-rendering: pixelated;}
   body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#000000; }
 
+.world {
+  position: relative;
+  display: inline-block;
+}
 .grid {
-  position: absolute;
-  top: var(--gridoffsety);  left: var(--gridoffsetx);
+  position: static;
+  top: 0;  left: 0;
   display: grid;
   gap: 0;
   grid-template-columns: repeat(var(--cols), var(--cell-size));  grid-template-rows: repeat(var(--rows), var(--cell-size));
-  --cell-size: calc(100vmin / 16);
   width: calc(var(--cols) * var(--cell-size));  height: calc(var(--rows) * var(--cell-size));
   background-image: var(--blob_worldbackgroundsprite);
   background-size: var(--backgroundsize), auto;
@@ -808,22 +771,14 @@ body {
   background-size: calc(100% * 16) calc(100% * 16);
   background-position: calc(100%/15 * var(--col)) calc(100%/15 * var(--row));
   width: 101%;  height: 101%;
-  /* performance hints */
-  contain: paint;                       /* limit layout/paint scope to each cell */
-  will-change: transform, background-position; /* hint likely changing properties */
-  transform: translateZ(0);             /* promote to compositor layer */
-  backface-visibility: hidden;          /* small GPU/paint perf help */
-  /* keep pointer-events if you need painting via pointer events */
-  pointer-events: auto;
 }
 .player {
   position: absolute;
-  top: calc(((var(--visy) - 1) * var(--cell-size)) + var(--playeroffsety));
-  left: calc(((var(--visx) - 0.5) * var(--cell-size)) + var(--playeroffsetx));
+  top: calc((var(--visy) - 1) * var(--cell-size));
+  left: calc((var(--visx) - 0.5) * var(--cell-size));
   background-image: var(--blob_playersprite);
   background-size: calc(100% * 4) calc(100% * 4);
   background-position: var(--playerspriteframex) var(--playerspriteframey);
-  --cell-size: calc(100vmin / 16);
   width: calc(var(--cell-size)*2);  height: calc(var(--cell-size)*2);
 }
 .menu {
@@ -882,7 +837,7 @@ body {
   right: 5px;
   left: auto;
 }
-#customHTML,
+#links,
 #debugBox {
   width: calc(100% - 12px);
   font-family: monospace;
