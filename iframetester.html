@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>iframe tester</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        body {margin: 24px; }
+        .controls { margin-bottom: 12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+        .frame-wrap { border:1px solid #ccc; display:inline-block; }
+        iframe { display:block; border:0; }
+    </style>
+</head>
+<body>
+    <h3>iframe tester</h3>
+
+    <div class="controls">
+        <label>Width:
+            <input id="w" type="number" value="360" min="100" />
+        </label>
+        <label>Height:
+            <input id="h" type="number" value="640" min="100" />
+        </label>
+        <button id="apply">Apply</button>
+    </div>
+
+    <div class="frame-wrap" id="wrap">
+        <iframe id="testFrame" src="index.html" width="360" height="640" sandbox="allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation"></iframe>
+    </div>
+
+    <script>
+        const apply = document.getElementById('apply');
+        const frame = document.getElementById('testFrame');
+        const wrap = document.getElementById('wrap');
+
+        apply.addEventListener('click', () => {
+            const width = Math.max(100, parseInt(document.getElementById('w').value) || 360);
+            const height = Math.max(100, parseInt(document.getElementById('h').value) || 640);
+            frame.width = width;
+            frame.height = height;
+            wrap.style.width = width + 'px';
+            wrap.style.height = height + 'px';
+        });
+
+        
+        [w, h].forEach(inp => inp.addEventListener('keydown', e => { // can press enter in inputs to apply
+            if (e.key === 'Enter') apply.click();
+        }));
+    </script>
+</body>
+</html>
