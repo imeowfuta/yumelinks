@@ -1,10 +1,9 @@
-<!doctype html>
-<html lang="en"
+<!doctype html><html lang="en"
 style='
+--startx: 2;
+--starty: 2;
 --cols: 16;
 --rows: 16;
---x: 1;
---y: 1;
 --backgroundscrollspeedx: 0.5;
 --backgroundscrollspeedy: 0.1;
 --backgroundsize: 30%;
@@ -15,92 +14,19 @@ style='
 --worldbackgroundsprite: url("data:image/jpeg;base64,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");
 --walksound: url("data:audio/mpeg;base64,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");
 '>
-<head> 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-</head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /></head>
 
 <body>
-  <div class="world">
-    <div class="background" id="background"></div>
-    <div class="grid" id="grid"></div>
-    <div class="player" id="player" aria-hidden="true" role="presentation" tabindex="-1"></div>
-  </div>
 
-  <button id="toggleMenu" type="button" tabindex="0" style="z-index:10;" aria-label="Toggle menu">Menu</button>
+<!-- HTML -->
+<div class="world">
+  <div class="background" id="background"></div>
+  <div class="grid" id="grid"></div>
+  <div class="player" id="player" aria-hidden="true" role="presentation" tabindex="-1"></div>
+</div>
 
-  <div class="menu" id="menu">
-    <p>move: arrows/WASD, interact: z/space</p>
-    <label for="sourceHtmlInput">Upload original HTML (required to Save):</label>
-    <input id="sourceHtmlInput" type="file" accept=".html,text/html" />
-    <label for="saveButton">Save:</label>
-    <button id="saveButton" type="button">Save</button>
-    <br>
-
-    <label for="tilesetInput">Upload tileset, 16x16 grid, max 20 KiB, max 1024px:</label>
-    <input id="tilesetInput" type="file" accept="image/*" onchange=
-      "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Tileset image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
-      if(img.width>1024||img.height>1024){alert('Tileset image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read tileset image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
-    <br>
-
-    <label for="playerInput">Upload player sprite frames, 4x4 grid, max 20 KiB, max 512px:</label>
-    <input id="playerInput" type="file" accept="image/*" onchange=
-      "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Player image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
-      if(img.width>512||img.height>512){alert('Player image must be 512x512 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read player image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
-    <br>
-
-    <label for="walksoundInput">Upload walk sound, max 20 KiB:</label>
-    <input id="walksoundInput" type="file" accept="audio/*" onchange=
-      "if(this.files && this.files[0] && this.files[0].size > 20480){ alert('Walk sound must be 20 KiB or smaller.'); this.value = ''; }" />
-    <br>
-
-    <label for="backgroundInput">Upload background image, max 20 KiB, max 1024px:</label>
-    <input id="backgroundInput" type="file" accept="image/*" onchange=
-      "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Background image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
-      if(img.width>1024||img.height>1024){alert('Background image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read background image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
-    <br>
-    <label for="backgroundSize">Background image size:</label>
-    <input id="backgroundSize" type="number" step="10" value="100" style="width:80px" />
-    <br>
-    <label for="backgroundSpeedX">Background scroll X</label>
-    <input id="backgroundSpeedX" type="number" step="0.1" value="0" style="width:80px" />
-    <label for="backgroundSpeedY" style="margin-left:8px;">Background scroll Y</label>
-    <input id="backgroundSpeedY" type="number" step="0.1" value="0" style="width:80px" />
-    <br>
-
-    <label for="colsInput">Columns, max 16:</label>
-    <input id="colsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
-    <label for="rowsInput" style="margin-left:8px;">Rows, max 16:</label>
-    <input id="rowsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
-    <br>
-
-    <label for="palette">Tileset palette, tile selected:</label>
-    <span id="selectedCoords">none</span>
-    <div id="preview" class="tile-preview" title="selected tile preview"></div>
-    <button id="clearselection" type="button">clear</button>
-    <div id="palette" class="palette" aria-label="tileset-palette"></div>
-
-    <br>
-
-    <label for="links">enter string of coords followed by link eg. 0,2 1,2 https://example.com</label>
-    <textarea id="links" rows="7" style="resize: vertical;"></textarea>
-    <br>
-
-    <label for="debugBox" style="margin-top:12px;display:block;">Debug Output:</label>
-    <textarea id="debugBox" rows="3" readonly style="resize: none;">debug output</textarea>
-    <br>
-
-    <h6>this program is CC0 public domain, as empire falls may the new dream be to share</h6>
-
-
-  </div>
-
-
-
-
-
-
-<style> /* GAMEPLAY STYLES */
+<!-- STYLE -->
+<style>
   *,*::before,*::after { top: 0; left: 0; margin: 0; padding: 0; border: 0; outline: 0; box-shadow: none; text-decoration: none; -webkit-appearance: none; appearance: none; box-sizing: border-box; image-rendering: crisp-edges; image-rendering: pixelated;}
 
   body {
@@ -163,16 +89,22 @@ style='
 
 <script>// GAMEPLAY LOGIC
 
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v)); //why isn't this in JS yet?
 
   const rootStyle = getComputedStyle(document.documentElement);
 
-  function getval(val) {
+  function getval(val) { // function to get values from saved <html> CSS variables
     return rootStyle.getPropertyValue( '--' + val);
   }
 
-  let x = parseFloat(getval('x')) || 2;
-  let y = parseFloat(getval('y')) || 2;
+  let x = parseFloat(getval('startx')) || 2; // get x and y start pos
+  let y = parseFloat(getval('starty')) || 2;
+
+  const params = new URLSearchParams(window.location.search);
+  const nx = parseInt(params.get('x'), 10);
+  if (!Number.isNaN(nx)) x = clamp(nx, 0, parseInt(getval('cols')) - 1);
+  const ny = parseInt(params.get('y'), 10);
+  if (!Number.isNaN(ny)) y = clamp(ny, 0, parseInt(getval('rows')) - 1);
 
   let walkSound = null;
   const v = getval('walksound') || '';
@@ -181,9 +113,6 @@ style='
     try { walkSound = new Audio(m[2]); walkSound.preload = 'auto'; } catch (e) { walkSound = null; }
   }
 
-  const palette = document.getElementById('palette');
-  const preview = document.getElementById('preview');
-  const selectedCoords = document.getElementById('selectedCoords');
   const grid = document.getElementById('grid');
   const player = document.getElementById('player');
   const background = document.getElementById('background');
@@ -339,8 +268,6 @@ style='
         moving = true;
         x = newX; y = newY;
         facing = mv.dir;
-        document.documentElement.style.setProperty('--x', x);
-        document.documentElement.style.setProperty('--y', y);
       
       try { playWalkSound(); } catch (e) { /* ignore */ } // play a step sound when a move begins
         break;
@@ -439,8 +366,6 @@ style='
           return;
         }
       }
-
-      // no URL: you could add handling for inline HTML or other actions here
     }
   }
 
@@ -453,33 +378,86 @@ style='
 
 
 
+<!-- --- EDITOR --- -->
 
 
 
+<!-- EDITOR HTML -->
+<button id="toggleMenu" type="button" tabindex="0" style="z-index:10;" aria-label="Toggle menu">Menu</button>
+<div class="menu" id="menu">
+  <p>move: arrows/WASD, interact: z/space</p>
+  <br>
 
+  <label for="sourceHtmlInput">Upload original HTML (required to Save):</label>
+  <input id="sourceHtmlInput" type="file" accept=".html,text/html" />
+  <label for="saveButton">Save:</label>
+  <button id="saveButton" type="button">Save</button>
+  <br><br>
 
+  <label for="tilesetInput">Tileset, 16x16 grid, max 20 KiB, max 1024px:</label>
+  <input id="tilesetInput" type="file" accept="image/*" onchange=
+    "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Tileset image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
+    if(img.width>1024||img.height>1024){alert('Tileset image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read tileset image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
+  <br>
+  <label for="playerInput">Player sprite frames, 4x4 grid, max 20 KiB, max 512px:</label>
+  <input id="playerInput" type="file" accept="image/*" onchange=
+    "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Player image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
+    if(img.width>512||img.height>512){alert('Player image must be 512x512 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read player image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
+  <br>
+  <label for="backgroundInput">BackGround image, max 20 KiB, max 1024px:</label>
+  <input id="backgroundInput" type="file" accept="image/*" onchange=
+    "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Background image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
+    if(img.width>1024||img.height>1024){alert('Background image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read background image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
+  <br><br>
 
+  <label for="backgroundSize">BackGround image size:</label>
+  <input id="backgroundSize" type="number" step="10" value="100" style="width:80px" />
+  <br>
+  <label for="backgroundSpeedX">BG scroll X</label>
+  <input id="backgroundSpeedX" type="number" step="0.1" value="0" style="width:80px" />
+  <label for="backgroundSpeedY" style="margin-left:8px;">BG scroll Y</label>
+  <input id="backgroundSpeedY" type="number" step="0.1" value="0" style="width:80px" />
+  <br><br>
 
+  <label for="walksoundInput">Upload walk sound, max 20 KiB:</label>
+  <input id="walksoundInput" type="file" accept="audio/*" onchange=
+    "if(this.files && this.files[0] && this.files[0].size > 20480){ alert('Walk sound must be 20 KiB or smaller.'); this.value = ''; }" />
+  <br><br>
 
+  <label for="startX">Player start X:</label>
+  <input id="startX" type="number" min="0" step="1" value="2" style="width:80px" />
+  <label for="startY" style="margin-left:8px;">Player start Y:</label>
+  <input id="startY" type="number" min="0" step="1" value="2" style="width:80px" />
+  <p>use x y url parameter to override start position when linking your dream for example: mydream.html?x=2&y=5</p>
+  <br>
+  
 
+  <label for="colsInput">Columns, max 16:</label>
+  <input id="colsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
+  <label for="rowsInput" style="margin-left:8px;">Rows, max 16:</label>
+  <input id="rowsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
+  <br>
 
+  <label for="palette">Tileset palette, tile selected:</label>
+  <span id="selectedCoords">none</span>
+  <div id="preview" class="tile-preview" title="selected tile preview"></div>
+  <button id="clearselection" type="button">clear</button>
+  <div id="palette" class="palette" aria-label="tileset-palette"></div>
+  <br>
 
+  <label for="links">enter string of coords followed by link eg. 0,2 1,2 https://example.com</label>
+  <textarea id="links" rows="7" style="resize: vertical;"></textarea>
+  <br>
 
+  <label for="debugBox" style="margin-top:12px;display:block;">Debug Output:</label>
+  <textarea id="debugBox" rows="3" readonly style="resize: none;">debug output</textarea>
+  <br>
 
+  <h6>this program is CC0 public domain, as empire falls may the new dream be to share</h6>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<style> /* EDITOR STYLES */
+<!-- EDITOR STYLES -->
+<style>
   button, input, textarea {
     outline: none;
   }
@@ -553,6 +531,12 @@ style='
 
 
 <script> // EDITOR LOGIC
+
+  const palette = document.getElementById('palette');
+  const preview = document.getElementById('preview');
+  const selectedCoords = document.getElementById('selectedCoords');
+
+
 // MENU TOGGLE: show/hide menu on button press
   const menu = document.getElementById('menu');
   const toggleMenuBtn = document.getElementById('toggleMenu');
@@ -662,6 +646,20 @@ style='
     document.documentElement.style.setProperty('--backgroundsize', `${v}%`);
   });
 
+// START POSITION CONTROLS: allow user to change --startx / --starty
+  const startXInput = document.getElementById('startX');
+  const startYInput = document.getElementById('startY');
+  startXInput.value = parseFloat(getval('startx')) || 2;
+  startYInput.value = parseFloat(getval('starty')) || 2;
+  startXInput.addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value) || 0;
+    document.documentElement.style.setProperty('--startx', v);
+  });
+  startYInput.addEventListener('input', (e) => {
+    const v = parseFloat(e.target.value) || 0;
+    document.documentElement.style.setProperty('--starty', v);
+  });
+
 // GRID SIZE CONTROLS: allow user to change --cols / --rows then rebuilds grid
   const colsInput = document.getElementById('colsInput');
   const rowsInput = document.getElementById('rowsInput');
@@ -684,16 +682,6 @@ style='
       buildGrid();
     });
   }
-
-// LINKS EDITOR: user sets --links
-  const linkelement = document.getElementById('links');
-  const rawlinks = getval('links') || '';
-  linkelement.value = String(rawlinks).trim().replace(/^['"]|['"]$/g, '');
-  linkelement.addEventListener('input', (e) => {
-    let v = e.target.value.trim().replace(/^['"]|['"]$/g, '');
-    document.documentElement.style.setProperty('--links', v);
-  });
-
 
 // EDITOR CLEAR BUTTON: clears selected tile
   const clearselectionBtn = document.getElementById('clearselection');
@@ -807,6 +795,15 @@ style='
     if (typeof debugBox !== 'undefined' && debugBox) debugBox.value = `--gridstate updated: ${state}`;
     return state;
   }
+
+// LINKS EDITOR: user sets --links
+  const linkelement = document.getElementById('links');
+  const rawlinks = getval('links') || '';
+  linkelement.value = String(rawlinks).trim().replace(/^['"]|['"]$/g, '');
+  linkelement.addEventListener('input', (e) => {
+    let v = e.target.value.trim().replace(/^['"]|['"]$/g, '');
+    document.documentElement.style.setProperty('--links', v);
+  });
 
 // DEBUG: shows info updates at 60 fps
   setInterval(() => { // 60 FPS game loop START
