@@ -7,8 +7,9 @@ style='
 --backgroundscrollspeedx: 0.5;
 --backgroundscrollspeedy: 0.1;
 --backgroundsize: 30%;
---links: "0,0 6,2 https://en.wikipedia.org/wiki/Torrent_duck";
+--links: "0,0 6,2 https://en.wikipedia.org/wiki/Torrent_duck \n10,6 https://archive.org/search?query=Killing+Hope";
 --levelstate: "3,0 1,0 2,0 2,0 2,0 0,0 0,0 1,0 0,0 1,0 0,0 0,0 0,0 1,0 0,0 0,0 0,0 1,0 0,0 0,0 0,0 0,0 0,0 1,0 0,0 1,0 4,0 4,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 1,0 1,0 3,0 1,0";
+--walls: "2,0";
 --tilesetsprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEABAMAAACuXLVVAAAAD1BMVEUAAACZmZlmZplmZmYzZpko+ityAAAAAXRSTlMAQObYZgAAAQ9JREFUeNrt1MGRwjAQRFFSaA8JuFECg0hgxeQf0xa2Wba4Iy7/HXzw6ZeqpZPe+KCHRTp9mjapJ1fZbmPxInlSQCgVqa6QquxWw1q8ao0pAamU1CO7Mm23Klt99WJPCMjQJiJSSrtq2Fasi7Wsnw+IV8DbCK8XTRvhi92qypbieslvBNQ+Q+nc+883Ah5aDalX9SkBud/DQ/NOuvd+mxDQQ1JsH0VKNZ4Bt6r7hIAI7TKkrm67arR5J6Cn/STS+wotnavmjDD0J0I+aBM55yn+pw17uNX+N75yDcutSocTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAh/0C3aM3uPegxg0AAAAASUVORK5CYII="); 
 --playersprite: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgAAAACs5Sa2AAAAAnRSTlMAAQGU/a4AAAK7SURBVHja7ZfBattAFEXfoMxOwdlo1/6DismuoRNM6CaQCY7QxuBf6KJLQ39thNEuELrwf6iE7FpU9N4LlxlbGIEhEJLN1Z1ziJ2Rxnmm6sgPnUTwFr1Ch5BTBLRDeCip4Ou5AO0QlkSWQRCgHYKXBWQqOCIDgJ4IyJML6WujYx+ICgB07CRRBcBZjf4GzSIRFDjD6VwkDCBjcO3MNWcQEULIBGjakMXCIlCrwA/5nViM7uZOAP0esiZqI2GtQo18iYQV0eVwuVagHcKGFwD2hB+8Dyxe6UadH9zJn0SfseWR4AsFkjYVjLP8sBrXDumNG7kXyGnCYOA9oB45vG8lLO2RD5BHtVeHP0BwD/Ye+5AcHO4Tjt6U0503I0LeCkAmwnwnoOfkDgHAZz1ECAAPs07FWAD41lcqJoICP/sngnYICtxFwakdglfg+CahQ/gk4MwZTu0Q3ELAjaYTEcK9gmpBHNohVLekAjIWNrqQkb7bkAglAwjUcUIgBY50rYwEAC/BPRKsU8C3AB2n27UiWA7ukZA7i8cdHUL0f0L6yF/B69ynHN6P+eGE88O8NADoEJ7mBmDoX2Nh2fctg2cRtUOo+34HgI6d3G4LAHTsZN/zgt9uLSf3+BPmFXC6uy4WfND54e7P65gwMj90Y/ND9hzPD0+hifch63YMZkHmh1nYmx9eFAzi0HfT5oc1LwBsDkwg55gfeJ64fIP5QQCRiO98fvDvYX5YlCPCUkCaEOpHWah7Tu0QAPpgIUIAmPGhlQ4BoOr/QoTAQBZ+dVbFSBiADg5nRsVIGIDVmySCdggrXXDmgtNHAgMjQnPPeduYRGhu5Lrh4A4BAPmFA0Km742Crl2lYxJB4MwTISe9NipQJAxAi4UYCcbLdS1AO4Sl0YfUi6AdgjdlgccdHQLh+I99AanwEtynHN7/JGfMtvZgnCUAAAAASUVORK5CYII=");
 --worldbackgroundsprite: url("data:image/jpeg;base64,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");
@@ -18,7 +19,7 @@ style='
 
 <body>
 
-<!-- HTML -->
+  <!-- --- HTML --- -->
 <p class="instructions" id="instructions">move: arrows/WASD, <br> interact: z/space</p>
 <div class="world" id="world" aria-label="yumelinks game world" tabindex="0">
     <canvas class="levelcanvas" id="levelcanvas" aria-hidden="true" role="presentation" tabindex="-1"></canvas>
@@ -26,18 +27,18 @@ style='
     <div class="player" id="player" aria-hidden="true" role="presentation" tabindex="-1"></div>
 </div>
 
-<!-- STYLE -->
-<style>
+<style> /* --- STYLE --- */
   *,*::before,*::after { top: 0; left: 0; margin: 0; padding: 0; border: 0; outline: 0; box-shadow: none; text-decoration: none; -webkit-appearance: none; appearance: none; box-sizing: border-box; image-rendering: crisp-edges; image-rendering: pixelated;}
-
   body {
-    overflow: hidden; height: 100vh; width: 100vw; overscroll-behavior: none;
-    display:flex; align-items:center; justify-content:center; background:#000000;
+    overflow: hidden; height: 100vh; width: 100vw; overscroll-behavior: none;display:flex; align-items:center; justify-content:center; 
+    background:#000000;
 
   /* BLOBED IMAGES */
     --blob_tilesetsprite: null;
     --blob_worldbackgroundsprite: null;
     --blob_playersprite: null;
+  /* BLOBED SOUNDS */
+    --blob_walksound: null;
   /* PLAYER ANIMATION */
     --visx: 2; --visy: 2;
     --playerspriteframex: 0%; --playerspriteframey: 0%;
@@ -99,8 +100,7 @@ style='
 </style>
 
 
-<script>// GAMEPLAY LOGIC
-
+<script>// --- JAVASCRIPT --- //
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v)); //why isn't this in JS yet?
 
   const rootStyle = getComputedStyle(document.documentElement);
@@ -118,17 +118,9 @@ style='
   const ny = parseInt(params.get('y'), 10);
   if (!Number.isNaN(ny)) y = clamp(ny, 0, parseInt(getval('rows')) - 1);
 
-  let walkSound = null;
-  const v = getval('walksound') || '';
-  const m = v.match(/url\((['"]?)(.*?)\1\)/);
-  if (m && m[2]) {
-    try { walkSound = new Audio(m[2]); walkSound.preload = 'auto'; } catch (e) { walkSound = null; }
-  }
-
   // prefer explicit id but fall back to the .world class so code doesn't break if HTML lacks the id
   const world = document.getElementById('world');
   const levelCanvas = document.getElementById('levelcanvas');
-  const grid = document.getElementById('grid');
   const player = document.getElementById('player');
 
   let visx = x;
@@ -181,7 +173,36 @@ style='
   convertCssDataUrlVarToBlob('--worldbackgroundsprite');
   convertCssDataUrlVarToBlob('--playersprite');
 
+// WALK SOUND SETUP
+  convertCssDataUrlVarToBlob('--walksound');
 
+  // single AudioContext and decoded buffer; HTMLAudio fallback
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let walkBuffer = null;
+  let walkSound = null;
+
+  function updateWalkSoundFromBlob() {
+    const url = _stripUrlWrapper(getComputedStyle(document.body).getPropertyValue('--blob_walksound'));
+    walkSound = new Audio(url);
+    walkSound.preload = 'auto';
+    // decode once for low-latency playback
+    fetch(url).then(r => r.arrayBuffer()).then(ab => audioCtx.decodeAudioData(ab)).then(buf => { walkBuffer = buf; });
+  }
+
+  updateWalkSoundFromBlob();
+
+  function playWalkSound() {
+    if (walkBuffer) {
+      const src = audioCtx.createBufferSource();
+      src.buffer = walkBuffer;
+      src.connect(audioCtx.destination);
+      src.start();
+      return;
+    }
+    walkSound.currentTime = 0;
+    const p = walkSound.play();
+    if (p && p.catch) p.catch(() => {});
+  }
 
 // CANVAS LEVEL SETUP
   const levelCtx = levelCanvas ? levelCanvas.getContext('2d') : null;
@@ -269,31 +290,9 @@ style='
 
   setupLevelCanvas(); // initial render
 
-
-// BUILD GRID
-  grid.innerHTML = '';
-  // create a static 16x16 accessible grid of buttons (cells) for later drawing interactions
-  const STATIC_COLS = 16;
-  const STATIC_ROWS = 16;
-  for (let r = 0; r < STATIC_ROWS; r++) {
-    for (let c = 0; c < STATIC_COLS; c++) {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'cell';
-      btn.setAttribute('role', 'button');
-      btn.setAttribute('aria-label', `cell ${c},${r}`);
-      btn.tabIndex = -1;
-      btn.title = `cell ${c},${r}`;
-      btn.dataset.col = String(c);
-      btn.dataset.row = String(r);
-      grid.appendChild(btn);
-    }
-  }
-
-
 // AUDIO PLAYBACK
-
   function playWalkSound() {
+    performance.mark('walkSoundStart');
     const a = walkSound;
     if (!a) return;
     try { a.currentTime = 0; } catch (e) { /* ignore read-only currentTime */ }
@@ -302,7 +301,6 @@ style='
   }
 
 // MOVEMENT HANDLING
-
   const KEY_MAP = {
     'arrowup': 'up', 'w': 'up', 'f': 'up',
     'arrowdown': 'down', 's': 'down',
@@ -318,6 +316,34 @@ style='
   };
 
   const keysHeld = new Set();
+
+  // simple helpers for wall checks
+  function getWallsSet() {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--walls') || '';
+    const cleaned = String(raw).trim().replace(/^['"]|['"]$/g, '');
+    return new Set(cleaned.length ? cleaned.split(/\s+/).filter(Boolean) : []);
+  }
+  
+  function getLevelTileAt(cx, ry) {
+    const cols = parseInt(getval('cols')) || 16;
+    const rows = parseInt(getval('rows')) || 16;
+    const raw = getval('levelstate') || '';
+    const levelstate = String(raw).replace(/^['"]|['"]$/g, '').trim();
+    const tokens = levelstate.length ? levelstate.split(/\s+/).filter(Boolean) : [];
+    const idx = ry * cols + cx;
+    if (idx < 0 || idx >= cols * rows) return null;
+    const t = tokens[idx] || '.,.';
+    if (t === '.,.') return null;
+    const m = String(t).trim().match(/^(-?\d+)\s*,\s*(-?\d+)$/);
+    if (!m) return null;
+    return [parseInt(m[1], 10), parseInt(m[2], 10)];
+  }
+  
+  function isWallAt(cx, ry) {
+    const tile = getLevelTileAt(cx, ry);
+    if (!tile) return false;
+    return getWallsSet().has(`${tile[0]},${tile[1]}`);
+  }
 
   function inputHasFocus() {
     const el = document.activeElement;
@@ -356,6 +382,12 @@ style='
         const newX = clamp(x + mv.dx, 0, parseInt(getval('cols')) - 1);
         const newY = clamp(y + mv.dy, 0, parseInt(getval('rows')) - 1);
         if (newX === x && newY === y) continue;
+        // if destination is a wall, do not move — update facing only
+        if (isWallAt(newX, newY)) {
+          facing = mv.dir;
+          // optionally play blocked sound here
+          continue;
+        }
         moving = true;
         x = newX; y = newY;
         facing = mv.dir;
@@ -408,97 +440,81 @@ style='
 
   }, 16); // 60 FPS game loop END
 
-
 //INTERACTION HANDLER
+  const instructions = document.getElementById('instructions');
+  function openLink(url) {
+    try { window.open(url, '_blank'); } catch (e) { 
+      instructions.querySelector('[data-yumelinks-added]')?.remove();
+      instructions.insertAdjacentHTML('beforeend',`<span data-yumelinks-added><br><a href="${url}" target="_blank" rel="noopener noreferrer">iframe doesn't allow-popups, copy this link: ${url}</a></span>`);
+    }
+  }
 
   window.addEventListener('keydown', (e) => { // single-press listener (ignore repeats and when an input has focus)
     if (inputHasFocus()) return;
     if (e.repeat) return;
     const key = String(e.key || '');
     if (e.code === 'Space' || key.toLowerCase() === 'z' || key === 'Enter') {// interact keypress handling (single-press: Space, Z, Enter)
-      //DO NOT BLOCK ANY DEFAULTS e.preventDefault(); THIS IS ESSENTIAL FOR ACCESSIBILITY
       handleInteract();
     }
   });
 
-  function handleInteract() {  
-
+  function handleInteract() {
     const raw = getval('links') || '';
-    const clean = String(raw).trim().replace(/^['"]|['"]$/g, '');
-    const lines = clean.split(/\r?\n/);
+    let s = String(raw).trim();
+    if ((s[0] === '"' && s[s.length - 1] === '"') || (s[0] === "'" && s[s.length - 1] === "'")) s = s.slice(1, -1);
+    s = s.replace(/\\r?\\n/g, '\n');
 
-    // open URL with best-effort across iframes/sandboxing
-    function openLink(url) {
-      try {
-        // try top context first (works when same-origin or not sandboxed)
-        if (window.top && window.top !== window) {
-          const w = window.top.open(url, '_blank');
-          if (w) return; // success
-          // popup blocked -> try navigating top (user-activation may be required)
-          try { window.top.location.href = url; return; } catch (e) { /* fallthrough */ }
-        }
-      } catch (e) {
-        // cross-origin access to window.top throws — fall back
-      }
-      // fallback to current context
-      const w2 = window.open(url, '_blank');
-      if (w2) return;
-      // last resort: navigate current window
-      window.location.href = url;
-    }
+    const lines = s.split('\\n');
 
     const coordToken = `${tilefacingx},${tilefacingy}`;
+    const esc = coordToken.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const coordRegex = new RegExp('(?:^|\\s)'+esc+'(?:\\s|$)');
+
     const urlRegex = /\bhttps?:\/\/[^\s]+/i;
 
-    for (let raw of lines) {
-      const line = raw.trim();
-      if (!line) continue;
+    for (const rawLine of lines) {
+      const line = String(rawLine || '');
+      if (!coordRegex.test(line)) continue; // only consider lines that actually contain this coord
 
-      const tokens = line.split(/\s+/); // quick presence check: exact token or substring like "2,4" present
-      const matchIndex = tokens.findIndex(t => t === coordToken || t.replace(/[,]/g,'') === coordToken.replace(',',''));
-      if (matchIndex === -1 && line.indexOf(coordToken) === -1) continue;
+      // prefer URL after the matched coord token on the same line
+      const m = line.match(coordRegex);
+      const after = line.slice((m.index || 0) + m[0].length);
+      const afterUrl = after.match(urlRegex);
+      if (afterUrl) { openLink(afterUrl[0]); return; }
 
-      // try to find a URL on the same line
-      const u = line.match(urlRegex);
-      if (u && u[0]) {
-        // user-initiated keypress -> best-effort open (handles iframes/sandbox)
-        openLink(u[0]);
-        return;
-      }
-
-      // if URL not found but the token is present, also check token+1 as probable link
-      if (matchIndex >= 0 && tokens.length > matchIndex + 1) {
-        const candidate = tokens[matchIndex + 1];
-        if (candidate && urlRegex.test(candidate)) {
-          openLink(candidate.match(urlRegex)[0]);
-          return;
-        }
-      }
+      // fallback: any url anywhere on the same line
+      const anyUrl = line.match(urlRegex);
+      if (anyUrl) { openLink(anyUrl[0]); return; }
     }
   }
+
 </script>
 
 
-<!-- EDITOR CUTOFF CODE sMRnk9PiEpoqr1hPCHQL4yP3-->
 
-<!-- --- --- --- --- --- --- --- --- --- --- --- --
+
+
+<!-- EDITOR CUTOFF CODE sMRnk9PiEpoqr1hPCHQL4yP3---
+--- --- --- --- --- --- --- --- --- --- --- --- ---
 .          ▗▄▄▄▖▗▄▄▄ ▗▄▄▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖           .
 .          ▐▌   ▐▌  █  █    █ ▐▌ ▐▌▐▌ ▐▌          .
 .          ▐▛▀▀▘▐▌  █  █    █ ▐▌ ▐▌▐▛▀▚▖          .
 .          ▐▙▄▄▖▐▙▄▄▀▗▄█▄▖  █ ▝▚▄▞▘▐▌ ▐▌          .
---- --- --- --- --- --- --- --- --- --- --- --- -->
+--- --- --- --- --- --- --- --- --- --- --- --- ---
+--- THANK YOU TO ANYONE WHO HELPS FIX THIS JANK -->
 
-<!-- THANK YOU TO ANYONE WHO HELPS FIX THIS JANK -->
+
+
 
 
 <!-- EDITOR HTML -->
 <button id="toggleMenu" type="button" tabindex="0" style="z-index:10;" aria-label="Toggle menu">Menu</button>
 <div class="menu" id="menu">
   <h2>Yumelinks</h2>
-  <label for="sourceHtmlInput">Upload original HTML (required to Save):</label>
+  <button id="saveButton" type="button">Save game</button>
+  <br>
+  <label for="sourceHtmlInput">if cannot save try uploading original HTML here:</label>
   <input id="sourceHtmlInput" type="file" accept=".html,text/html" />
-  <label for="saveButton">Save:</label>
-  <button id="saveButton" type="button">Save</button>
   <br><br>
 
   <label for="tilesetInput">Tileset, 16x16 grid, max 20 KiB, max 1024px:</label>
@@ -551,8 +567,8 @@ style='
   <button id="eraser" type="button" aria-label="eraser">eraser</button>
   <button id="clearselection" type="button" aria-label="clear selection">clear selection</button>
   <div id="palette" class="palette" aria-label="tileset-palette"></div>
-  <button id="matchtilemap" type="button" aria-label="match tilemap">(WARNING) match tilemap</button>
-  <button id="cleartilemap" type="button" aria-label="clear tilemap">(WARNING) clear tilemap</button>
+  <button id="matchtilemap" type="button" aria-label="match level to tilemap">(WARNING) match level to tilemap</button>
+  <button id="cleartilemap" type="button" aria-label="clear level">(WARNING) clear level</button>
   <br>
 
   <label for="links">enter string of coords followed by link eg. 0,2 1,2 https://example.com</label>
@@ -573,6 +589,9 @@ style='
   }
   button:focus, input:focus, textarea:focus {
     outline: 3px solid rgb(255, 0, 0);
+  }
+  .cell:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.048);
   }
   #toggleMenu { 
     position: fixed;
@@ -638,6 +657,11 @@ style='
     font-size: 12px;
     margin-top: 6px;
   }
+  .wall {
+    background-color: rgba(138, 54, 54, 0.2);
+    border: 2px dashed rgba(138, 54, 54, 0.9);
+  }
+
 </style>
 
 <script> // EDITOR LOGIC
@@ -717,16 +741,8 @@ style='
         // set CSS var so saved HTML picks it up
         document.documentElement.style.setProperty('--walksound', `url("${dataUrl}")`);
         // update runtime Audio object
-        try {
-          if (walkAudio) {
-            walkAudio.pause();
-            walkAudio.src = dataUrl;
-            walkAudio.load();
-          } else {
-            walkAudio = new Audio(dataUrl);
-            walkAudio.preload = 'auto';
-          }
-        } catch (e) { /* ignore */ }
+        convertCssDataUrlVarToBlob('--walksound')
+        updateWalkSoundFromBlob();
         if (debugBox) debugBox.value = 'Walk sound loaded';
       });
     });
@@ -768,6 +784,27 @@ style='
     const v = parseFloat(e.target.value) || 0;
     document.documentElement.style.setProperty('--starty', v);
   });
+
+// BUILD DRAWING GRID
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  // create a static 16x16 accessible grid of buttons (cells) for later drawing interactions
+  const STATIC_COLS = 16;
+  const STATIC_ROWS = 16;
+  for (let r = 0; r < STATIC_ROWS; r++) {
+    for (let c = 0; c < STATIC_COLS; c++) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cell';
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('aria-label', `cell ${c},${r}`);
+      btn.tabIndex = -1;
+      btn.title = `cell ${c},${r}`;
+      btn.dataset.col = String(c);
+      btn.dataset.row = String(r);
+      grid.appendChild(btn);
+    }
+  }
 
 // GRID SIZE CONTROLS: allow user to change --cols / --rows then rebuilds grid
 
@@ -862,8 +899,8 @@ style='
   });
 
 // EDITOR CLEAR TILEMAP BUTTON: clears entire tilemap
-  const cleartilemapBtn = document.getElementById('cleartilemap');
-  cleartilemapBtn.addEventListener('click', () => {
+  const clearlevelBtn = document.getElementById('cleartilemap');
+  clearlevelBtn.addEventListener('click', () => {
     const cols = parseInt(getval('cols')) || 16;
     const rows = parseInt(getval('rows')) || 16;
     const total = cols * rows;
@@ -909,11 +946,50 @@ style='
         if (prev) prev.classList.remove('selected');
         input.classList.add('selected');
       });
+
+      // clicking an already-selected radio toggles wall state for that tile
+      input.addEventListener('click', (ev) => {
+        // click runs before 'change' — use existing .selected class to detect pre-click checked state
+        const wasSelected = input.classList.contains('selected');
+        if (!wasSelected) return; // normal selection, handled by change handler
+        ev.preventDefault(); // don't try to change radio state
+        const key = `${c},${r}`;
+        const raw = getComputedStyle(document.documentElement).getPropertyValue('--walls') || '';
+        const cleaned = String(raw).trim().replace(/^['"]|['"]$/g, '');
+        const tokens = cleaned.length ? cleaned.split(/\s+/).filter(Boolean) : [];
+        const set = new Set(tokens);
+        if (set.has(key)) set.delete(key); else set.add(key);
+        document.documentElement.style.setProperty('--walls', Array.from(set).join(' '));
+        updateWallsUI();
+        // ensure radio remains visually selected
+        input.checked = true;
+        input.classList.add('selected');
+      });
       rowEl.appendChild(input); // append each radio into the current row element (so rows are focusable)
     }
-    palette.appendChild(rowEl); // append the completed row to the palette so Tab can focus rows
+  
+    palette.appendChild(rowEl);
   }
 
+  function updateWallsUI() {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--walls') || '';
+    const cleaned = String(raw).trim().replace(/^['"]|['"]$/g, '');
+    const tokens = cleaned.length ? cleaned.split(/\s+/).filter(Boolean) : [];
+    const wallSet = new Set(tokens);
+    document.querySelectorAll('input[name="paletteTile"]').forEach(input => {
+      const key = `${input.dataset.col},${input.dataset.row}`;
+      if (wallSet.has(key)) {
+        input.classList.add('wall');
+        input.setAttribute('aria-pressed', 'true');
+      } else {
+        input.classList.remove('wall');
+        input.setAttribute('aria-pressed', 'false');
+      }
+    });
+  }
+
+
+// DRAWING STUFF
   function changeGridTile(c, r) {
     if (!selected) return;
     const cols = parseInt(getval('cols')) || 16;
@@ -1003,8 +1079,20 @@ style='
       if (ev.button && ev.button !== 0) return;
       drawing = true;
       paintFromEvent(ev);
-      ev.preventDefault();
-      try { world.focus({ preventScroll: true }); } catch (e) { if (world && world.focus) world.focus(); }
+      // If a tileset control (or anything inside the palette) currently has focus,
+      // keep focus there so keyboard selection continues. Otherwise move focus to world.
+      const active = document.activeElement;
+      const isPaletteFocused = !!(
+        active &&
+        (active.classList && active.classList.contains('tile') ||
+         (typeof active.closest === 'function' && active.closest('.palette')))
+      );
+      if (!isPaletteFocused) {
+        try { world.focus({ preventScroll: true }); } catch (e) { if (world && world.focus) world.focus(); }
+      } else {
+        // restore focus to the same element to avoid accidental blur side-effects
+        try { active.focus({ preventScroll: true }); } catch (e) { try { active.focus(); } catch (err) {} }
+      }
     });
 
     gridEl.addEventListener('pointermove', (ev) => {
@@ -1019,9 +1107,15 @@ style='
 // LINKS EDITOR: user sets --links
   const linkelement = document.getElementById('links');
   const rawlinks = getval('links') || '';
-  linkelement.value = String(rawlinks).trim().replace(/^['"]|['"]$/g, '');
+  // show real newlines in the textarea by converting literal "\n" sequences to actual newlines
+  let displayLinks = String(rawlinks).trim().replace(/^['"]|['"]$/g, '');
+  displayLinks = displayLinks.replace(/\\n/g, '\n');
+  linkelement.value = displayLinks;
   linkelement.addEventListener('input', (e) => {
-    let v = e.target.value.trim().replace(/^['"]|['"]$/g, '');
+    let v = String(e.target.value || '').trim();
+    // store newlines as the two-character sequence "\n" in the CSS var
+    v = v.replace(/\r?\n/g, '\\n');
+    v = v.replace(/^['"]|['"]$/g, '');
     document.documentElement.style.setProperty('--links', v);
   });
 
@@ -1039,13 +1133,38 @@ style='
       //`Animframe: ${animframe.toFixed(2)}\n` +
   }, 64); // 60 FPS game loop END
 
-
 // SAVE PAGE: saves only opening <html ...> block appending to user uploaded original HTML
   const sourceHtmlInputEl = document.getElementById('sourceHtmlInput');
   const saveButtonEl = document.getElementById('saveButton');
   let ORIGINAL_SOURCE = null;
-  if (saveButtonEl) saveButtonEl.disabled = true;
 
+  // Try to auto-load the original HTML from the current URL or common hints before user upload.
+  const candidates = [window.location.href];
+  const link = document.querySelector('link[rel="original"], link[rel="source"], link[rel="canonical"]');
+  if (link && link.href) candidates.push(link.href);
+  if (window.location.pathname && window.location.pathname.endsWith('/')) {
+    candidates.push(window.location.href + 'index.html');
+  }
+  candidates.forEach((url) => {
+    fetch(url, { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) return null;
+        if (ORIGINAL_SOURCE) return null;
+        return res.text();
+      })
+      .then(txt => {
+        if (!txt || ORIGINAL_SOURCE) return;
+        const startsWithDoctype = /^\s*<!doctype\s+html>/i.test(txt);
+        const htmlWithLangAndStyle = /<html[^>]*\blang\s*=\s*['"][^'"]+['"][^>]*\bstyle\s*=\s*['"]/i.test(txt.slice(0, 2000));
+        if (startsWithDoctype && htmlWithLangAndStyle) {
+          ORIGINAL_SOURCE = txt;
+          if (saveButtonEl) saveButtonEl.disabled = false;
+          console.info('Original HTML auto-loaded from:', url);
+        }
+      })
+  });
+
+  if (saveButtonEl) saveButtonEl.disabled = true;
   if (sourceHtmlInputEl) {
     sourceHtmlInputEl.addEventListener('change', (ev) => {
       const f = ev.target.files && ev.target.files[0];
@@ -1132,7 +1251,9 @@ style='
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
+
     });
+
   }
 </script>
 
