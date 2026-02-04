@@ -4,7 +4,7 @@ a dream room stored in a single html document
 this tool lets you make small (<100KiB) dream sites in the style of yume nikki, visitors can interact with them by navigating a character around into links that can tie to other dreams or flow off into the wider internet, ideal for weird personal sites or neocities mazes
 
 ## uploading assets into html file dataurl embed:
-all uploaded files must be under 20KiB
+all uploaded files must be under 20KiB, you can find many free compression tools online
 #### player spritesheet: 
 - png, jpeg
 - max size 512x512
