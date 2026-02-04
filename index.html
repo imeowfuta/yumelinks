@@ -483,65 +483,66 @@ style='
   <input id="sourceHtmlInput" type="file" accept=".html,text/html" />
   <br><br>
 
-  <label for="tilesetInput">Tileset, 16x16 grid, max 20 KiB, max 1024px:</label>
+  <label for="colsInput"><b>Columns</b>: max 16:</label>
+  <input id="colsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
+  <label for="rowsInput" style="margin-left:8px;"><b>Rows</b>: max 16:</label>
+  <input id="rowsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
+  <br><br>
+
+  <label for="tilesetInput"><b>Tileset</b>: 16x16 grid, max 20 KiB, max 1024px</label>
   <input id="tilesetInput" type="file" accept="image/*" onchange=
     "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Tileset image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
     if(img.width>1024||img.height>1024){alert('Tileset image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read tileset image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
   <br>
-  <label for="playerInput">Player sprite frames, 4x4 grid, max 20 KiB, max 512px:</label>
+  <label for="playerInput"><b>Player spritesheet</b>: 4x4 grid, max 20 KiB, max 512px</label>
   <input id="playerInput" type="file" accept="image/*" onchange=
     "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Player image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
     if(img.width>512||img.height>512){alert('Player image must be 512x512 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read player image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
   <br>
-  <label for="backgroundInput">BackGround image, max 20 KiB, max 1024px:</label>
+  <label for="backgroundInput"><b>Background image</b>: max 20 KiB, max 1024px</label>
   <input id="backgroundInput" type="file" accept="image/*" onchange=
     "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Background image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
     if(img.width>1024||img.height>1024){alert('Background image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read background image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
   <br><br>
 
-  <label for="backgroundSize">BackGround image size:</label>
+  <label for="backgroundSize"><b>Background size</b>:</label>
   <input id="backgroundSize" type="number" step="10" value="100" style="width:80px" />
   <br>
-  <label for="backgroundSpeedX">BG scroll X</label>
+  <label for="backgroundSpeedX"><b>Background speed</b> X:</label>
   <input id="backgroundSpeedX" type="number" step="0.1" value="0" style="width:80px" />
-  <label for="backgroundSpeedY" style="margin-left:8px;">BG scroll Y</label>
+  <label for="backgroundSpeedY" style="margin-left:8px;" aria-label="Background scroll Y"> Y:</label>
   <input id="backgroundSpeedY" type="number" step="0.1" value="0" style="width:80px" />
   <br><br>
 
-  <label for="walksoundInput">Upload walk sound, max 20 KiB:</label>
+  <label for="walksoundInput"><b>Walk sound</b>: max 20 KiB:</label>
   <input id="walksoundInput" type="file" accept="audio/*" onchange=
     "if(this.files && this.files[0] && this.files[0].size > 20480){ alert('Walk sound must be 20 KiB or smaller.'); this.value = ''; }" />
   <br><br>
 
-  <label for="startX">Player start X:</label>
+  <label for="startX"><b>Player start</b> X:</label>
   <input id="startX" type="number" min="0" step="1" value="2" style="width:80px" />
-  <label for="startY" style="margin-left:8px;">Player start Y:</label>
+  <label for="startY" style="margin-left:8px;" aria-label="Player start Y">Y:</label>
   <input id="startY" type="number" min="0" step="1" value="2" style="width:80px" />
-  <p>use x y url parameter to override start position when linking your dream for example: mydream.html?x=2&y=5</p>
-  <br>
+  <p>use url parameters x and y to override start position when linking to your dream for example: mydream.html?x=2&y=5</p>
+  <br><br>
   
 
-  <label for="colsInput">Columns, max 16:</label>
-  <input id="colsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
-  <label for="rowsInput" style="margin-left:8px;">Rows, max 16:</label>
-  <input id="rowsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
-  <br>
-
-  <label for="selectedCoords">Tilemap selected:</label>
+  <p><b>Tilemap:</b> reclick selected tile to toggle wall</p>
+  <label for="selectedCoords">Selected:</label>
   <span id="selectedCoords">none</span>
   <div id="preview" class="tile-preview" title="selected tile preview"></div>
   <button id="eraser" type="button" aria-label="eraser">eraser</button>
   <button id="clearselection" type="button" aria-label="clear selection">clear selection</button>
   <div id="palette" class="palette" aria-label="tileset-palette"></div>
-  <button id="cleartilemap" type="button" aria-label="clear level">(WARNING) CLEAR level</button>
-  <button id="matchtilemap" type="button" aria-label="match level to tilemap">(WARNING) RESET level to match tilemap</button>
+  <button id="cleartilemap" type="button" aria-label="clear level"><b style="text-shadow: 0 1px 1px rgba(255, 0, 0, 0.5);">!! CLEAR</b> level</button>
+  <button id="matchtilemap" type="button" aria-label="match level to tilemap"><b style="text-shadow: 0 1px 1px rgba(255, 0, 0, 0.5);">!! RESET</b> level to match tilemap</button>
   <br><br>
 
-  <label for="links">Link tiles: enter string of coords followed by link <br> eg. 0,2 1,2 https://example.com</label>
+  <label for="links"><b>Link tiles</b>: enter string of coords followed by link <br> eg. 0,2 1,2 https://example.com</label>
   <textarea id="links" rows="7" style="resize: vertical;"></textarea>
   <br>
 
-  <label for="debugBox" style="margin-top:12px;display:block;">Debug Output:</label>
+  <label for="debugBox" style="margin-top:12px;display:block;"><b>Debug Output</b>:</label>
   <textarea id="debugBox" rows="3" readonly style="resize: none;">debug output</textarea>
   <br>
 
@@ -552,6 +553,7 @@ style='
 <style>
   button, input, textarea {
     outline: none;
+    font-size: 1rem;
   }
   button:focus, input:focus, textarea:focus {
     outline: 3px solid rgb(255, 0, 0);
@@ -620,7 +622,7 @@ style='
   #links, #debugBox {
     width: calc(100% - 12px);
     font-family: monospace;
-    font-size: 12px;
+    font-size: 0.8rem;
     margin-top: 6px;
   }
   .wall {
@@ -953,6 +955,8 @@ style='
       }
     });
   }
+
+  updateWallsUI()
 
 
 // DRAWING STUFF
