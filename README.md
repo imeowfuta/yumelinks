@@ -29,19 +29,19 @@ all uploaded files must be under 20KiB
 #### TODO IMPLIMENT: alternatively you can add url to assets stored in folders or online
 
 ## putting it on your site
-### if you place it within an iframe on your page and some functions do not work try adding these sandbox rules to the iframe
+#### if you place it within an iframe on your page and some functions do not work try adding these sandbox rules to the iframe
 `sandbox="allow-scripts allow-popups allow-downloads""`
 - `allow-scripts` is essential
 - `allow-popups` is required for opening links on link tiles
 - `allow-downloads` is required for saving from inside the iframe
 
-### you can link to the page with x and y url parameters to start the player at a specific position
+#### you can link to the page with x and y url parameters to start the player at a specific position
 this is useful for if you want to have multiple doors leading into your dream
 
-## when editing the code
-### editing above the "EDITOR" section can be used to make more simple changes to the css and gameplay
+## editing the code
+#### editing above the "EDITOR" section can be used to make more simple changes to the css and gameplay
 editing below this point is a mess and may drive you to madness (please help)
-### i have done my best to make the page somewhat accessable
+#### i have done my best to make the page somewhat accessable
 **please try your best to keep accessability in mind when making any edits**
 #### good practices:
 - clearly label any interactable elements within them, in a separate `<label for=>`or with an `aria-label=`
