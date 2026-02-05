@@ -43,6 +43,7 @@ this is useful for if you want to have multiple doors leading into your dream
 ## editing the code
 **editing above the "EDITOR" section can be used to make more simple changes to the css and gameplay**
 editing below this point is a mess and may drive you to madness (please help)
+
 **please try your best to keep accessability in mind when making any edits**
 **good accessability practices:**
 - clearly label any interactable elements within them, in a separate `<label for=>`or with an `aria-label=`
