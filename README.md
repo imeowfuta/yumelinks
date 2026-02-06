@@ -40,7 +40,7 @@ all uploaded files must be under 20KiB, you can find many free compression tools
 - `allow-downloads` is required for saving from inside the iframe
 
 **you can link to the page with x and y url parameters to start the player at a specific position**
-this is useful for if you want to have multiple doors leading into your dream
+this can be used to have different entry points into your dream
 
 ## editing the code
 **editing above the "EDITOR" section can be used to make more simple changes to the css and gameplay**
@@ -49,7 +49,7 @@ editing below this point is a mess and may drive you to madness (please help)
 **please try your best to keep accessability in mind when making any edits, some good accessability practices:**
 - clearly label any interactable elements within them, in a separate `<label for=>`or with an `aria-label=`
 - try to make as many elements as possible keyboard navigable, or selectable with tools like [vimium](https://github.com/philc/vimium)
-- if you add rapidly changing of flashing imagery please give clear epilepsy warnings when linking to your dream
+- if you add rapidly changing or flashing imagery please give clear epilepsy warnings when linking to your dream
 
 **thank you for checking out this project**
 it's fully CC0 public domain but if you do make anything with it i'd love to see
