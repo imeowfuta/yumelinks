@@ -5,7 +5,8 @@ this tool lets you make small (<100KiB) dream sites in the style of yume nikki, 
 
 ## uploading assets into html file dataurl embed:
 all uploaded files must be under 20KiB, you can find many free compression tools online
-**player spritesheet:**
+
+#### player spritesheet:
 - png, jpeg
 - max size 512x512
 - 4x4 animation sprites:
@@ -20,11 +21,12 @@ all uploaded files must be under 20KiB, you can find many free compression tools
 3|down  down  down  blank
 4|left  left  left  blank
 ```
-**tileset:**
+#### tileset:
 - png, jpeg
 - max size 1024x1024
 - 16x16 tile sheet
-**walk sound:**
+  
+#### walk sound:
 - mp3, wav, ogg
 - aim for less than a second long
 
