@@ -1,6 +1,6 @@
 # yumelinks 
 a dream room stored in a single html document
-![screenshot of a grid based level editor, a pixel art scene consists of a floating island, which is monocrome exept the blue rivers that flow off into a noisy abyss ](exampleAssets/screenshot.png)
+![screenshot showing a grid based level editor, a pixel art scene of floating island in monocrome exept the blue rivers that flow off into a staticy abyss](exampleAssets/screenshot.png)
 this tool lets you make small (<100KiB) dream sites in the style of yume nikki, visitors can interact with them by navigating a character around into links that can tie to other dreams or flow off into the wider internet, ideal for weird personal sites or neocities mazes
 
 ## uploading assets into html file dataurl embed:
