@@ -86,7 +86,7 @@ style='
   .cell {
     background: transparent;
     width: 100%;  height: 100%;
-    pointer-events: auto
+    pointer-events: auto;
   }
   .player {
     position: absolute;
@@ -483,10 +483,11 @@ style='
   <input id="sourceHtmlInput" type="file" accept=".html,text/html" />
   <br><br>
 
-  <label for="colsInput"><b>Columns</b>: max 16:</label>
-  <input id="colsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
-  <label for="rowsInput" style="margin-left:8px;"><b>Rows</b>: max 16:</label>
-  <input id="rowsInput" type="number" min="4" max="16" step="1" value="16" style="width:80px" />
+  <label for="colsInput"><b>Columns</b>:</label>
+  <input id="colsInput" type="number" min="4" max="64" step="1" value="16" style="width:80px" />
+  <label for="rowsInput" style="margin-left:8px;"><b>Rows</b>:</label>
+  <input id="rowsInput" type="number" min="4" max="64" step="1" value="16" style="width:80px" />
+
   <br><br>
 
   <label for="tilesetInput"><b>Tileset</b>: 16x16 grid, max 20 KiB, max 1024px</label>
@@ -755,24 +756,26 @@ style='
 
 // BUILD DRAWING GRID
   const grid = document.getElementById('grid');
-  grid.innerHTML = '';
-  // create a static 16x16 accessible grid of buttons (cells) for later drawing interactions
-  const STATIC_COLS = 16;
-  const STATIC_ROWS = 16;
-  for (let r = 0; r < STATIC_ROWS; r++) {
-    for (let c = 0; c < STATIC_COLS; c++) {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'cell';
-      btn.setAttribute('role', 'button');
-      btn.setAttribute('aria-label', `cell ${c},${r}`);
-      btn.tabIndex = -1;
-      btn.title = `cell ${c},${r}`;
-      btn.dataset.col = String(c);
-      btn.dataset.row = String(r);
-      grid.appendChild(btn);
+
+  function setupDrawingGrid() { 
+    grid.innerHTML = '';
+    // create the accessible grid of buttons (cells) for later drawing interactions
+    for (let r = 0; r < getval('rows'); r++) {
+      for (let c = 0; c < getval('cols'); c++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cell';
+        btn.setAttribute('role', 'button');
+        btn.setAttribute('aria-label', `cell ${c},${r}`);
+        btn.tabIndex = -1;
+        btn.title = `cell ${c},${r}`;
+        btn.dataset.col = String(c);
+        btn.dataset.row = String(r);
+        grid.appendChild(btn);
+      }
     }
   }
+  setupDrawingGrid()
 
 // GRID SIZE CONTROLS: allow user to change --cols / --rows then rebuilds grid
 
@@ -803,7 +806,8 @@ style='
 
     const newState = newTokens.join(' ');
     document.documentElement.style.setProperty('--levelstate', newState);
-    setupLevelCanvas();
+    setupDrawingGrid();
+    redrawLevelCanvas();
   }
 
 
@@ -814,8 +818,8 @@ style='
     colsInput.addEventListener('input', (e) => {
       let v = parseInt(e.target.value, 10) || 1;
       v = Math.max(1, Math.min(64, v));
-      levelsizechange(getval('cols'), getval('rows'), v, getval('rows'));
       document.documentElement.style.setProperty('--cols', v);
+      levelsizechange(getval('cols'), getval('rows'), v, getval('rows'));
     });
   }
   if (rowsInput) {
@@ -824,8 +828,8 @@ style='
       let v = parseInt(e.target.value, 10) || 1;
       v = Math.max(1, Math.min(64, v));
       ROWS = v;
-      levelsizechange(getval('cols'), getval('rows'), getval('cols'), v);
       document.documentElement.style.setProperty('--rows', v);
+      levelsizechange(getval('cols'), getval('rows'), getval('cols'), v);
     });
   }
 
@@ -1011,6 +1015,14 @@ style='
     redrawLevelCanvas();
   }
 
+  grid.addEventListener('click', (ev) => {
+    const target = ev.target;
+    if (!target.classList.contains('cell')) return;
+    const c = target.dataset.col;
+    const r = target.dataset.row;
+    changeGridTile(c, r);
+  });
+
   // Simplified grid paint handler: paint on pointerdown + pointermove while button held.
   window.addEventListener('DOMContentLoaded', attachGridHandler);
   if (document.readyState === 'complete') attachGridHandler();
@@ -1055,7 +1067,7 @@ style='
       const isPaletteFocused = !!(
         active &&
         (active.classList && active.classList.contains('tile') ||
-         (typeof active.closest === 'function' && active.closest('.palette')))
+        (typeof active.closest === 'function' && active.closest('.palette')))
       );
       if (!isPaletteFocused) {
         try { world.focus({ preventScroll: true }); } catch (e) { if (world && world.focus) world.focus(); }
