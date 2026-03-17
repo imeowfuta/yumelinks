@@ -166,6 +166,8 @@ style='
       document.body.style.setProperty(blobVar, `url("${url}")`);
       return;
     }
+    // if not data URL, pass it through to the blob variable so the runtime can use it
+    document.body.style.setProperty(blobVar, `url("${val}")`);
     
   }
 
@@ -494,16 +496,35 @@ style='
   <input id="tilesetInput" type="file" accept="image/*" onchange=
     "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Tileset image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
     if(img.width>1024||img.height>1024){alert('Tileset image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read tileset image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
+  
+  
   <br>
+  <label for="tilesetDirectPath">direct path/url</label>
+  <input id="tilesetDirectPath" type="text">
+  <button id="tilesetDirectPathBtn" type="button">set</button>
+
+  <br><br>
   <label for="playerInput"><b>Player spritesheet</b>: 4x4 grid, max 20 KiB, max 512px</label>
   <input id="playerInput" type="file" accept="image/*" onchange=
     "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Player image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
     if(img.width>512||img.height>512){alert('Player image must be 512x512 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read player image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
+  
   <br>
+  <label for="playerDirectPath">direct path/url</label>
+  <input id="playerDirectPath" type="text">
+  <button id="playerDirectPathBtn" type="button">set</button>
+  
+  <br><br>
   <label for="backgroundInput"><b>Background image</b>: max 20 KiB, max 1024px</label>
   <input id="backgroundInput" type="file" accept="image/*" onchange=
     "if(this.files&&this.files[0]){const f=this.files[0];if(f.size>20480){alert('Background image must be 20 KiB or smaller');this.value='';}else{const url=URL.createObjectURL(f);const img=new Image();img.onload=()=>{
     if(img.width>1024||img.height>1024){alert('Background image must be 1024x1024 or smaller');this.value='';}URL.revokeObjectURL(url);};img.onerror=()=>{alert('Failed to read background image');this.value='';URL.revokeObjectURL(url);};img.src=url;}}"/>
+  
+  <br>
+  <label for="backgroundDirectPath">direct path/url</label>
+  <input id="backgroundDirectPath" type="text">
+  <button id="backgroundDirectPathBtn" type="button">set</button>
+  
   <br><br>
 
   <label for="backgroundSize"><b>Background size</b>:</label>
@@ -518,6 +539,10 @@ style='
   <label for="walksoundInput"><b>Walk sound</b>: max 20 KiB:</label>
   <input id="walksoundInput" type="file" accept="audio/*" onchange=
     "if(this.files && this.files[0] && this.files[0].size > 20480){ alert('Walk sound must be 20 KiB or smaller.'); this.value = ''; }" />
+  <br>
+  <label for="walksoundDirectPath">direct path/url</label>
+  <input id="walksoundDirectPath" type="text">
+  <button id="walksoundDirectPathBtn" type="button">set</button>
   <br><br>
 
   <label for="startX"><b>Player start</b> X:</label>
@@ -698,6 +723,40 @@ style='
       if (debugBox) debugBox.value = dataUrl;
     });
   });
+
+  // DIRECT PATH HANDLERS
+  function setupDirectPath(btnId, inpId, cssVar, isAudio = false) {
+    const btn = document.getElementById(btnId);
+    const inp = document.getElementById(inpId);
+    if(!btn || !inp) return;
+    
+    btn.addEventListener('click', () => {
+      const path = inp.value.trim();
+      if(!path) return;
+      
+      const check = isAudio 
+        ? new Promise((resolve, reject) => { 
+            const a = new Audio(); 
+            a.onloadedmetadata = resolve; 
+            a.onerror = reject; 
+            a.src = path; 
+          })
+        : new Promise((resolve, reject) => { const img = new Image(); img.onload=resolve; img.onerror=reject; img.src=path; });
+
+      check.then(() => {
+        document.documentElement.style.setProperty(cssVar, `url("${path}")`);
+        convertCssDataUrlVarToBlob(cssVar);
+        if(isAudio) updateWalkSoundFromBlob();
+        if(cssVar === '--tilesetsprite') setupLevelCanvas();
+        alert(`Successfully set ${cssVar}`);
+      }).catch(e => alert(`Could not load resource at path: ${path}`));
+    });
+  }
+
+  setupDirectPath('tilesetDirectPathBtn', 'tilesetDirectPath', '--tilesetsprite');
+  setupDirectPath('playerDirectPathBtn', 'playerDirectPath', '--playersprite');
+  setupDirectPath('backgroundDirectPathBtn', 'backgroundDirectPath', '--worldbackgroundsprite');
+  setupDirectPath('walksoundDirectPathBtn', 'walksoundDirectPath', '--walksound', true);
 
 // WALK SOUND UPLOAD uploaded walk sound file is converted to data:URL and set as --walksound CSS var
   const walksoundInput = document.getElementById('walksoundInput');
@@ -1241,7 +1300,3 @@ style='
 
 </body>
 </html>
-
-
-
-
